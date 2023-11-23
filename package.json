@@ -9,11 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@google-cloud/vision": "^4.0.2",
+    "next": "14.0.3",
+    "next-connect": "^1.0.0",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.0.3"
+    "react-images-uploading": "^3.1.7"
   },
   "devDependencies": {
+    "@types/node": "20.9.3",
+    "@types/react": "18.2.38",
     "eslint": "^8",
     "eslint-config-next": "14.0.3"
   }
