@@ -14,6 +14,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "spoonacular.com",
       },
+      {
+        protocol: "https",
+        hostname: "abs.twimg.com",
+      },
     ],
   },
 };

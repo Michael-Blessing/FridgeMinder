@@ -32,7 +32,7 @@ const ImageUploader = () => {
     if (!file) {
       return;
     }
-    
+
     // fetching labels from base64 image
     const responseLabels = await fetch("/api/annonateImage", {
       method: "POST",
@@ -42,8 +42,8 @@ const ImageUploader = () => {
       },
     });
     const dataLabels = await responseLabels.json();
-    const labels = dataLabels.labels
-    const ingredients = labels.map((label) => label.description)
+    const labels = dataLabels.labels;
+    const ingredients = labels.map((label) => label.description);
     console.log(ingredients);
 
     // fetching recipes from labels
@@ -57,8 +57,7 @@ const ImageUploader = () => {
     });
 
     const recipesData = await responseRecipes.json();
-    setRecipesData(recipesData)
-
+    setRecipesData(recipesData);
 
     // Clear the states after upload
     // setRecipesData(null);
@@ -95,7 +94,7 @@ const ImageUploader = () => {
             Upload
           </button>
         </form>
-        
+
         {base64 && (
           <div className="mb-8">
             <Image

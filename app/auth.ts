@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import Github from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
+import Twitter from "next-auth/providers/twitter";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
@@ -30,13 +31,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         }
       },
     }),
-    Github({
-      clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET as string,
-    }),
     Google({
       clientId: process.env.GOOGLE_ID as string,
       clientSecret: process.env.GOOGLE_SECRET as string,
+    }),
+    Twitter({
+      clientId: process.env.TWITTER_ID as string,
+      clientSecret: process.env.TWITTER_SECRET as string,
+      version: "2.0",
+    }),
+    Github({
+      clientId: process.env.GITHUB_ID as string,
+      clientSecret: process.env.GITHUB_SECRET as string,
     }),
   ],
   callbacks: {
