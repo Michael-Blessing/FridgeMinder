@@ -12,14 +12,16 @@ interface Ingredient {
 }
 
 export default function Page() {
-
   const searchParams = useSearchParams();
-  const image:string = searchParams.get("image") as string;
-  const title:string = searchParams.get("title") as string;
-  const usedIngredients:string = searchParams.get("usedIngredients") as string;
-  const missedIngredients:string = searchParams.get("missedIngredients") as string;
-  const parsedUsedIngredients:Array<Ingredient> = JSON.parse(usedIngredients);
-  const parsedMissedIngredients:Array<Ingredient> = JSON.parse(missedIngredients);
+  const image: string = searchParams.get("image") as string;
+  const title: string = searchParams.get("title") as string;
+  const usedIngredients: string = searchParams.get("usedIngredients") as string;
+  const missedIngredients: string = searchParams.get(
+    "missedIngredients",
+  ) as string;
+  const parsedUsedIngredients: Array<Ingredient> = JSON.parse(usedIngredients);
+  const parsedMissedIngredients: Array<Ingredient> =
+    JSON.parse(missedIngredients);
 
   return (
     <div className="bg-white rounded-md shadow-md overflow-hidden m-4">
@@ -33,20 +35,37 @@ export default function Page() {
       <h2 className="text-xl font-bold mb-2">{title}</h2>
       <h3>Used Ingredients:</h3>
       <ul>
-        {parsedUsedIngredients && parsedUsedIngredients.map((usedIngredients) => (
-          <li key={usedIngredients.id}>  {`${usedIngredients.name} - ${usedIngredients.amount} ${usedIngredients.unit}`}</li>
-        ))}
+        {parsedUsedIngredients &&
+          parsedUsedIngredients.map((usedIngredients) => (
+            <li key={usedIngredients.id}>
+              <h4>{`${usedIngredients.name} - ${usedIngredients.amount} ${usedIngredients.unit}`}</h4>
+              <Image
+                src={usedIngredients.image}
+                alt={usedIngredients.name}
+                width={200}
+                height={200}
+                className="w-full h-40 object-cover mb-2 rounded-md"
+              />
+            </li>
+          ))}
       </ul>
       <h3>Missing Ingredients:</h3>
       <ul>
-        {parsedMissedIngredients && parsedMissedIngredients.map((missedIngredients) => (
-          <li key={missedIngredients.id}>  {`${missedIngredients.name} - ${missedIngredients.amount} ${missedIngredients.unit}`}</li>
-        ))}
+        {parsedMissedIngredients &&
+          parsedMissedIngredients.map((missedIngredients) => (
+            <li key={missedIngredients.id}>
+              <h4>{`${missedIngredients.name} - ${missedIngredients.amount} ${missedIngredients.unit}`}</h4>
+              <Image
+                src={missedIngredients.image}
+                alt={missedIngredients.name}
+                width={200}
+                height={200}
+                className="w-full h-40 object-cover mb-2 rounded-md"
+              />
+            </li>
+          ))}
       </ul>
       <Link href="/">Get back</Link>
     </div>
   );
 }
-
-
-

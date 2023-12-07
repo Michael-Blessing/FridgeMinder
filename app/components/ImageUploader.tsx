@@ -107,9 +107,9 @@ const ImageUploader = () => {
           </div>
         )}
 
-      <Suspense fallback={<div>Loading Recipes...</div>}>
-        {recipesData ? <RecipeList recipesData={recipesData} /> : <></>}
-      </Suspense>
+        <Suspense fallback={<div>Loading Recipes...</div>}>
+          {recipesData ? <RecipeList recipesData={recipesData} /> : <></>}
+        </Suspense>
       </div>
     </>
   );

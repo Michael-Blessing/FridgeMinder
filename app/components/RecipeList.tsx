@@ -10,7 +10,13 @@ const RecipeList = ({ recipesData }) => {
           <Link
             href={{
               pathname: `/detailRecipe/${recipe.id}`,
-              query: { id: recipe.id, title: recipe.title, image: recipe.image, missedIngredients: JSON.stringify(recipe.missedIngredients), usedIngredients: JSON.stringify(recipe.usedIngredients)},
+              query: {
+                id: recipe.id,
+                title: recipe.title,
+                image: recipe.image,
+                missedIngredients: JSON.stringify(recipe.missedIngredients),
+                usedIngredients: JSON.stringify(recipe.usedIngredients),
+              },
             }}
           >
             <div key={recipe.id} className="mb-8 p-4 border rounded-md">
