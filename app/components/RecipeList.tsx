@@ -8,8 +8,10 @@ const RecipeList = ({ recipesData }) => {
       {recipesData.map((recipe) => (
         <>
           <Link
-            href="/detailRecipe/[recipeId]"
-            as={`/detailRecipe/${recipe.id}`}
+            href={{
+              pathname: `/detailRecipe/${recipe.id}`,
+              query: { id: recipe.id, title: recipe.title, image: recipe.image, missedIngredients: JSON.stringify(recipe.missedIngredients), usedIngredients: JSON.stringify(recipe.usedIngredients)},
+            }}
           >
             <div key={recipe.id} className="mb-8 p-4 border rounded-md">
               <h2 className="text-xl font-bold mb-2">{recipe.title}</h2>

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, Suspense } from "react";
 import Image from "next/image";
 import RecipeList from "./RecipeList";
 
@@ -34,7 +34,7 @@ const ImageUploader = () => {
     }
 
     // fetching labels from base64 image
-    const responseLabels = await fetch("/api/annonateImage", {
+    const responseLabels = await fetch("/api/annotateImage", {
       method: "POST",
       body: JSON.stringify({ base64 }),
       headers: {
@@ -107,7 +107,9 @@ const ImageUploader = () => {
           </div>
         )}
 
-        {recipesData && <RecipeList recipesData={recipesData} />}
+      <Suspense fallback={<div>Loading Recipes...</div>}>
+        {recipesData ? <RecipeList recipesData={recipesData} /> : <></>}
+      </Suspense>
       </div>
     </>
   );

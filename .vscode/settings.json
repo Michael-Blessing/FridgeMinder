@@ -9,8 +9,4 @@
     "source.fixAll.prettier": true
   },
   "editor.formatOnSave": true,
-  "doki.background.enabled": false,
-  "doki.wallpaper.enabled": false,
-  "doki.icon.enabled": false,
-  "doki.sounds.enabled": false,
 }
