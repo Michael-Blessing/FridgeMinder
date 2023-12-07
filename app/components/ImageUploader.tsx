@@ -99,10 +99,11 @@ const ImageUploader = () => {
           <div className="mb-8">
             <Image
               src={base64}
-              width={750}
-              height={500}
+              sizes="100vw"
+              width="0"
+              height="0"
               alt="Uploaded Image"
-              className="rounded-md"
+              className="rounded-md w-full h-auto"
             />
           </div>
         )}

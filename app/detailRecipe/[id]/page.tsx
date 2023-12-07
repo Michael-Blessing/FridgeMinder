@@ -24,13 +24,13 @@ export default function Page() {
     JSON.parse(missedIngredients);
 
   return (
-    <div className="bg-white rounded-md shadow-md overflow-hidden m-4">
+    <div className="bg-white rounded-md shadow-md m-4 w-80 min-w-full">
       <Image
         src={image}
         alt={title}
-        width={1200}
-        height={800}
-        className="w-full h-40 object-cover mb-2 rounded-md"
+        width={600}
+        height={400}
+        className="rounded-md"
       />
       <h2 className="text-xl font-bold mb-2">{title}</h2>
       <h3>Used Ingredients:</h3>
@@ -42,9 +42,9 @@ export default function Page() {
               <Image
                 src={usedIngredients.image}
                 alt={usedIngredients.name}
-                width={200}
                 height={200}
-                className="w-full h-40 object-cover mb-2 rounded-md"
+                width={200}
+                className="rounded-md"
               />
             </li>
           ))}
@@ -60,7 +60,7 @@ export default function Page() {
                 alt={missedIngredients.name}
                 width={200}
                 height={200}
-                className="w-full h-40 object-cover mb-2 rounded-md"
+                className="rounded-md"
               />
             </li>
           ))}
