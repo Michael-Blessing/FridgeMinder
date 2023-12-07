@@ -3,7 +3,6 @@ import Image from "next/image";
 
 export default async function Navbar() {
   const session = await auth();
-  //console.log(session)
 
   return (
     <nav className="flex justify-between items-center w-full h-16 px-6 bg-gray-100">
@@ -21,8 +20,8 @@ export default async function Navbar() {
             <Image
               src={session?.user?.image}
               alt="user profile picture"
-              width={50}
-              height={50}
+              width={75}
+              height={75}
             />
             <a href="/api/auth/signout" className="text-lg font-bold">
               Sign Out

@@ -24,8 +24,8 @@ const RecipeList = ({ recipesData }) => {
               <Image
                 src={recipe.image}
                 alt={recipe.title}
-                width={250}
-                height={250}
+                width={400}
+                height={300}
                 className="w-full h-40 object-cover mb-2 rounded-md"
               />
               <p>
