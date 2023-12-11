@@ -16,10 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-          <Navbar />
-          <main className="flex justify-center items-start p-6 min-h-screen">
-            {children}
-          </main>
+        <Navbar />
+        <main className="flex justify-center items-start p-6 min-h-screen bg-gradient-to-b from-purple-100 to-pink-200">
+          {children}
+        </main>
       </body>
     </html>
   );

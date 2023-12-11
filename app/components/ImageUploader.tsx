@@ -67,8 +67,8 @@ const ImageUploader = () => {
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center w-70 h-70 px-6">
-        <h1 className="text-2xl font-bold mb-4">Upload Image</h1>
+      <div className="flex flex-col justify-center items-center w-70 h-70 px-6 bg-purple-100">
+        <h1 className="text-3xl font-bold mb-4">Upload Image</h1>
         <form
           method="POST"
           encType="multipart/form-data"
@@ -89,7 +89,7 @@ const ImageUploader = () => {
           />
           <button
             type="submit"
-            className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+            className="text-lg font-bold border-2 rounded-lg border-purple-400 hover:bg-gradient-to-r from-purple-800 to-blue-800 hover:text-white hover:border-pink-200 p-1"
           >
             Upload
           </button>
@@ -133,3 +133,5 @@ const toBase64 = (file) => {
 };
 
 export default ImageUploader;
+
+
