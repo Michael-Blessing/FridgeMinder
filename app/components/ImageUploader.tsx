@@ -67,7 +67,7 @@ const ImageUploader = () => {
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center w-70 h-70 px-6 bg-purple-100">
+      <div className="flex flex-col justify-center items-center w-70 h-70 px-6 bg-purple-200">
         <h1 className="text-3xl font-bold mb-4">Upload Image</h1>
         <form
           method="POST"

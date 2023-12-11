@@ -10,7 +10,7 @@ export default async function Navbar() {
   const session = await auth();
   const user = session?.user as UserType;
   return (
-    <nav className="flex justify-between items-center w-full h-28 px-6 bg-gradient-to-b from-pink-200 to-purple-100">
+    <nav className="flex justify-between items-center w-full h-28 px-6 bg-gradient-to-b from-pink-200 to-purple-200">
       <div className="flex items-center">
         <a href="/" className="text-3xl font-bold text-blue-700">
           FridgeMinder
