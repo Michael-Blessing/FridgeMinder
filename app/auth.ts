@@ -38,7 +38,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     Twitter({
       clientId: process.env.TWITTER_ID as string,
       clientSecret: process.env.TWITTER_SECRET as string,
-      version: "2.0",
     }),
     Github({
       clientId: process.env.GITHUB_ID as string,

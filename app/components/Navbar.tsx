@@ -1,9 +1,14 @@
 import { auth } from "../auth";
 import Image from "next/image";
 
+interface UserType {
+  name: string;
+  image: string;
+}
+
 export default async function Navbar() {
   const session = await auth();
-
+  const user = session?.user as UserType;
   return (
     <nav className="flex justify-between items-center w-full h-16 px-6 bg-gray-100">
       <div className="flex items-center">
@@ -12,13 +17,13 @@ export default async function Navbar() {
         </a>
       </div>
       <div className="flex items-center">
-        {session ? (
+        {user ? (
           <div className="flex flex-container flex-row">
             <h6 className="text-lg font-bold">
-              Welcome, {session?.user?.name}
+              Welcome, {user.name}
             </h6>
             <Image
-              src={session?.user?.image}
+              src={user.image}
               alt="user profile picture"
               width={75}
               height={75}
