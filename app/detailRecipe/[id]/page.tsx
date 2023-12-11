@@ -24,7 +24,7 @@ export default function Page() {
     JSON.parse(missedIngredients);
 
   return (
-    <div className="bg-white rounded-md shadow-md m-4 w-80 min-w-full">
+    <div className="bg-purple-200 rounded-md shadow-md m-4 w-80 min-w-full">
       <Image
         src={image}
         alt={title}
@@ -32,12 +32,12 @@ export default function Page() {
         height={400}
         className="rounded-md"
       />
-      <h2 className="text-xl font-bold mb-2">{title}</h2>
-      <h3>Used Ingredients:</h3>
-      <ul>
+      <h2 className="text-2xl font-bold mb-2">{title}</h2>
+      <h3 className="text-xl">Used Ingredients:</h3>
+      <ul className="flex flex-row">
         {parsedUsedIngredients &&
           parsedUsedIngredients.map((usedIngredients) => (
-            <li key={usedIngredients.id}>
+            <li key={usedIngredients.id} className="px-8">
               <h4>{`${usedIngredients.name} - ${usedIngredients.amount} ${usedIngredients.unit}`}</h4>
               <Image
                 src={usedIngredients.image}
@@ -49,11 +49,11 @@ export default function Page() {
             </li>
           ))}
       </ul>
-      <h3>Missing Ingredients:</h3>
-      <ul>
+      <h3 className="text-xl">Missing Ingredients:</h3>
+      <ul className="flex flex-row">
         {parsedMissedIngredients &&
           parsedMissedIngredients.map((missedIngredients) => (
-            <li key={missedIngredients.id}>
+            <li key={missedIngredients.id} className="px-8">
               <h4>{`${missedIngredients.name} - ${missedIngredients.amount} ${missedIngredients.unit}`}</h4>
               <Image
                 src={missedIngredients.image}
