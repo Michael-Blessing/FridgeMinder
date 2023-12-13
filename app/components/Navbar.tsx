@@ -19,9 +19,7 @@ export default async function Navbar() {
       <div className="flex items-center">
         {user ? (
           <div className="flex flex-container flex-row items-center">
-            <h6 className="text-lg font-bold pr-8">
-              Welcome, {user.name}
-            </h6>
+            <h6 className="text-lg font-bold pr-8">Welcome, {user.name}</h6>
             <div className="flex flex-col">
               <Image
                 src={user.image}
@@ -29,7 +27,10 @@ export default async function Navbar() {
                 width={75}
                 height={75}
               />
-              <a href="/api/auth/signout" className="text-lg font-bold border-2 rounded-lg border-purple-400 hover:bg-gradient-to-r from-purple-800 to-blue-800 hover:text-white hover:border-pink-200 p-1">
+              <a
+                href="/api/auth/signout"
+                className="text-lg font-bold border-2 rounded-lg border-purple-400 hover:bg-gradient-to-r from-purple-800 to-blue-800 hover:text-white hover:border-pink-200 p-1"
+              >
                 Sign Out
               </a>
             </div>

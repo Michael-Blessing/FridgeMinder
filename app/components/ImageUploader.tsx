@@ -2,6 +2,7 @@
 import { useState, Suspense } from "react";
 import Image from "next/image";
 import RecipeList from "./RecipeList";
+//import RecipeOptions from "./IngredientsOptions";
 
 const ImageUploader = () => {
   const [file, setFile] = useState(null);
@@ -44,6 +45,11 @@ const ImageUploader = () => {
     const dataLabels = await responseLabels.json();
     const labels = dataLabels.labels;
     const ingredients = labels.map((label) => label.description);
+
+    if (ingredients.length === 0) {
+      return alert("No ingredients found, please try again.");
+    }
+
     console.log(ingredients);
 
     // fetching recipes from labels
@@ -57,6 +63,10 @@ const ImageUploader = () => {
     });
 
     const recipesData = await responseRecipes.json();
+    if (recipesData.length === 0) {
+      alert("No recipes found, please try again.");
+    }
+
     setRecipesData(recipesData);
 
     // Clear the states after upload
@@ -133,5 +143,3 @@ const toBase64 = (file) => {
 };
 
 export default ImageUploader;
-
-
