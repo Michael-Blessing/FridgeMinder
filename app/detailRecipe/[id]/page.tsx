@@ -19,9 +19,8 @@ export default function Page() {
   const missedIngredients: string = searchParams.get(
     "missedIngredients",
   ) as string;
-  const parsedUsedIngredients: Array<Ingredient> = JSON.parse(usedIngredients);
-  const parsedMissedIngredients: Array<Ingredient> =
-    JSON.parse(missedIngredients);
+  const parsedUsedIngredients: Ingredient[] = JSON.parse(usedIngredients);
+  const parsedMissedIngredients: Ingredient[] = JSON.parse(missedIngredients);
 
   return (
     <div className="bg-purple-200 rounded-md shadow-md m-4 w-80 min-w-full">

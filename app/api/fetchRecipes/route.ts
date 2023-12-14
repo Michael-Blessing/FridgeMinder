@@ -10,6 +10,11 @@ export async function POST(req: Request) {
 
   try {
     const response = await fetch(apiUrl);
+
+    if (!response.ok) {
+      return Response.json({ error: "Error fetching data" });
+    }
+
     const data = await response.json();
     return Response.json(data);
   } catch (error) {
