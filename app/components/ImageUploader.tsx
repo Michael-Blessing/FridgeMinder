@@ -2,14 +2,14 @@
 import { useState, Suspense, useEffect } from "react";
 import Image from "next/image";
 import RecipeList from "./RecipeList";
-import {Recipe} from "../RecipeType";
+import { Recipe } from "../RecipeType";
 //import RecipeOptions from "./IngredientsOptions";
 
 const ImageUploader = () => {
-  const [file, setFile] = useState<null|File>(null);
-  const [base64, setBase64] = useState<null|string>(null);
+  const [file, setFile] = useState<null | File>(null);
+  const [base64, setBase64] = useState<null | string>(null);
   const [ingredients, setIngredients] = useState<string[]>([]);
-  const [recipesData, setRecipesData] = useState<null|Recipe[]>(null);
+  const [recipesData, setRecipesData] = useState<null | Recipe[]>(null);
 
   useEffect(() => {
     const storedBase64 = localStorage.getItem("uploadedBase64");
@@ -24,23 +24,17 @@ const ImageUploader = () => {
     if (storedRecipesData) {
       setRecipesData(JSON.parse(storedRecipesData));
     }
-    
   }, []);
-
-
-
-
 
   const onFileChange = async (e) => {
     if (!e.target.files || e.target.files.length === 0) {
       return;
     }
 
-    const selectedFile:File = e.target.files[0];
+    const selectedFile: File = e.target.files[0];
 
     // Convert the file to base64
     const base64: any = await toBase64(selectedFile);
-
 
     setFile(selectedFile);
     localStorage.setItem("uploadedBase64", base64);
@@ -76,7 +70,7 @@ const ImageUploader = () => {
 
     setIngredients(ingredients);
     localStorage.setItem("uploadedIngredients", JSON.stringify(ingredients));
-    console.log(ingredients)
+    console.log(ingredients);
     // fetching recipes from labels
 
     const responseRecipes = await fetch("/api/fetchRecipes", {
