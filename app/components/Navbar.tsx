@@ -36,7 +36,7 @@ export default async function Navbar() {
             </div>
           </div>
         ) : (
-          <a href="/api/auth/signin" className="text-lg font-bold">
+          <a href="/api/auth/signin" className="text-lg font-bold border-2 rounded-lg border-purple-400 hover:bg-gradient-to-r from-purple-800 to-blue-800 hover:text-white hover:border-pink-200 p-1">
             Sign In
           </a>
         )}
