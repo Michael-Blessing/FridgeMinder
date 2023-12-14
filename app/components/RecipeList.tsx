@@ -6,8 +6,8 @@ const RecipeList = ({ recipesData }) => {
   return (
     <div className="flex flex-wrap justify-around">
       {recipesData.map((recipe) => (
-        <>
           <Link
+            key={recipe.id}
             href={{
               pathname: `/detailRecipe/${recipe.id}`,
               query: {
@@ -34,7 +34,6 @@ const RecipeList = ({ recipesData }) => {
               </p>
             </div>
           </Link>
-        </>
       ))}
     </div>
   );
