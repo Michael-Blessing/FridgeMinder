@@ -1,9 +1,9 @@
+"use client";
 import ImageUploader from "./components/ImageUploader";
-import { auth } from "./auth";
+import { useSession } from "next-auth/react";
 import "../styles/globals.css";
 
-export default async function Home() {
-  const session = await auth();
-
+export default function Home() {
+  const { data: session } = useSession();
   return <>{session ? <ImageUploader /> : <h4>Log in for features</h4>}</>;
 }

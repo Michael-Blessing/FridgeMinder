@@ -1,14 +1,14 @@
-import { auth } from "../auth";
+"use client";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { useSession } from "next-auth/react";
+import { UserType } from "../../types/UserType";
 
-interface UserType {
-  name: string;
-  image: string;
-}
-
-export default async function Navbar() {
-  const session = await auth();
+export default function Navbar() {
+  const { data: session, update } = useSession();
   const user = session?.user as UserType;
+
   return (
     <nav className="flex justify-between items-center w-full h-28 px-6 bg-gradient-to-b from-pink-200 to-purple-200">
       <div className="flex items-center">
@@ -20,6 +20,21 @@ export default async function Navbar() {
         {user ? (
           <div className="flex flex-container flex-row items-center">
             <h6 className="text-lg font-bold pr-8">Welcome, {user.name}</h6>
+            <div style={{ position: "relative", padding: "0 2em 0 0" }}>
+              <div
+                style={{
+                  position: "absolute",
+                  top: "-10px",
+                  right: "10px",
+                  background: "red",
+                  borderRadius: "100%",
+                  color: "white",
+                }}
+              >
+                {user.cart.length}
+              </div>
+              <FontAwesomeIcon icon={faCartShopping} size="2x" />
+            </div>
             <div className="flex flex-col">
               <Image
                 src={user.image}
