@@ -1,4 +1,5 @@
 import NextAuth from "next-auth";
+import { Cart } from "./CartType";
 
 declare module "next-auth" {
   /**
@@ -6,7 +7,7 @@ declare module "next-auth" {
    */
   interface Session {
     user: {
-      cart: [];
+      cart: Cart[];
     } & DefaultSession["user"];
   }
 }

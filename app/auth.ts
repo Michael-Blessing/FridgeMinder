@@ -50,21 +50,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       clientId: process.env.TWITTER_ID as string,
       clientSecret: process.env.TWITTER_SECRET as string,
     }),
-    /*Github({
+    Github({
       clientId: process.env.GITHUB_ID as string,
       clientSecret: process.env.GITHUB_SECRET as string,
-      scope: 'read:user',
-    }),*/
+    }),
   ],
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
       return true;
     },
     async session({ session, token, user }) {
-      const newUser = user as any as MyUser;
       if (session.user) {
-        session.user.id = newUser.id as string;
-        session.user.cart = newUser.cart;
+        session.user.cart = user.cart;
       }
       return session;
     },
