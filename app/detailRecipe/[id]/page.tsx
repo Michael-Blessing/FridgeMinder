@@ -35,23 +35,24 @@ export default function DetailRecipe() {
     missingIngredientsParams,
   );
 
-  const addToCart = (ingredientName: string) => {
+  const addToCart = (ingredient: Ingredient) => {
     if (!session?.user)
       return alert("Please sign in to add ingredients to your cart");
     const user = session?.user as UserType;
     const userCollection = collection(db, "users");
     const userDoc = doc(userCollection, session?.user?.id);
+    const { name, id } = ingredient;
 
     if (user.cart.length > 0) {
       updateDoc(userDoc, {
-        cart: [...user.cart, ingredientName],
+        cart: [...user.cart, { name, id }],
       });
-      update({ cart: [...user.cart, ingredientName] });
+      update({ cart: [...user.cart, { name, id }] });
     } else {
       updateDoc(userDoc, {
-        cart: [ingredientName],
+        cart: [{ name, id }],
       });
-      update({ cart: [ingredientName] });
+      update({ cart: [{ name, id }] });
     }
   };
 
@@ -74,7 +75,7 @@ export default function DetailRecipe() {
               className="px-8 relative transform transition duration-500 ease-in-out hover:scale-110"
               onMouseEnter={() => setHoveredId(usedIngredient.id)}
               onMouseLeave={() => setHoveredId(null)}
-              onClick={() => addToCart(usedIngredient.name)}
+              onClick={() => addToCart(usedIngredient)}
             >
               <h4>{`${usedIngredient.name} - ${usedIngredient.amount} ${usedIngredient.unit}`}</h4>
               <div className="relative overflow-hidden">
@@ -105,7 +106,7 @@ export default function DetailRecipe() {
               className="px-8 relative transform transition duration-500 ease-in-out hover:scale-110"
               onMouseEnter={() => setHoveredId(missedIngredient.id)}
               onMouseLeave={() => setHoveredId(null)}
-              onClick={() => addToCart(missedIngredient.name)}
+              onClick={() => addToCart(missedIngredient)}
             >
               <h4>{`${missedIngredient.name} - ${missedIngredient.amount} ${missedIngredient.unit}`}</h4>
               <div className="relative overflow-hidden">

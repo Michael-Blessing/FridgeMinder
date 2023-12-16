@@ -2,7 +2,7 @@
 import { useState, Suspense, useEffect } from "react";
 import Image from "next/image";
 import RecipeList from "./RecipeList";
-import { Recipe } from "../RecipeType";
+import { Recipe } from "../../types/RecipeType";
 //import RecipeOptions from "./IngredientsOptions";
 
 const ImageUploader = () => {

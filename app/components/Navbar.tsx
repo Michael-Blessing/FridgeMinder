@@ -3,6 +3,7 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 import { UserType } from "../../types/UserType";
 
 export default function Navbar() {
@@ -20,7 +21,10 @@ export default function Navbar() {
         {user ? (
           <div className="flex flex-container flex-row items-center">
             <h6 className="text-lg font-bold pr-8">Welcome, {user.name}</h6>
-            <div style={{ position: "relative", padding: "0 2em 0 0" }}>
+            <Link
+              style={{ position: "relative", padding: "0 2em 0 0" }}
+              href={{ pathname: `/shoppingCart` }}
+            >
               <div
                 style={{
                   position: "absolute",
@@ -34,7 +38,7 @@ export default function Navbar() {
                 {user.cart.length}
               </div>
               <FontAwesomeIcon icon={faCartShopping} size="2x" />
-            </div>
+            </Link>
             <div className="flex flex-col">
               <Image
                 src={user.image}

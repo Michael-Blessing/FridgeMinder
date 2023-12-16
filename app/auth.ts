@@ -3,9 +3,16 @@ import Github from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import Twitter from "next-auth/providers/twitter";
-import { FirestoreAdapter } from "@auth/firebase-adapter";
+import { FirestoreAdapter } from "./FirestoreAdapter";
 import { db } from "./firebase";
-import { collection, doc, updateDoc, getDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  updateDoc,
+  getDoc,
+  setDoc,
+  getDocs,
+} from "firebase/firestore";
 import { MyUser } from "../types/UserType";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
@@ -15,12 +22,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         username: {
           label: "Username",
           type: "text",
-          placeholder: "Enter your password",
+          placeholder: "Enter your username",
         },
         password: {
           label: "Password",
           type: "password",
-          placeholder: "Enter your name",
+          placeholder: "Enter your password",
         },
       },
       async authorize(credentials, req) {
@@ -38,31 +45,19 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     Google({
       clientId: process.env.GOOGLE_ID as string,
       clientSecret: process.env.GOOGLE_SECRET as string,
-      allowDangerousEmailAccountLinking: true,
     }),
     Twitter({
       clientId: process.env.TWITTER_ID as string,
       clientSecret: process.env.TWITTER_SECRET as string,
-      allowDangerousEmailAccountLinking: true,
     }),
-    Github({
+    /*Github({
       clientId: process.env.GITHUB_ID as string,
       clientSecret: process.env.GITHUB_SECRET as string,
-      allowDangerousEmailAccountLinking: true,
-    }),
+      scope: 'read:user',
+    }),*/
   ],
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      const newUser = user as any as MyUser;
-      const userRef = doc(db, "users", newUser.id);
-      const userDoc = await getDoc(userRef);
-      const cart = userDoc.data()?.cart;
-      if (userDoc.exists() && !cart) {
-        await updateDoc(userRef, {
-          cart: [],
-        });
-      }
-
       return true;
     },
     async session({ session, token, user }) {
