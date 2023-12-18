@@ -61,6 +61,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     },
     async session({ session, token, user }) {
       if (session.user) {
+        session.user.id = user.id;
         session.user.cart = user.cart;
       }
       return session;

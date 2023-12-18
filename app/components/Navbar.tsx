@@ -31,8 +31,13 @@ export default function Navbar() {
                   top: "-10px",
                   right: "10px",
                   background: "red",
-                  borderRadius: "100%",
+                  borderRadius: "50%",
                   color: "white",
+                  width: "20px",
+                  height: "20px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
                 }}
               >
                 {user.cart.length}
