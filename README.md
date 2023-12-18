@@ -19,7 +19,7 @@ To get started with Fridgeminder, follow these steps:
 
 1. Clone the repository:
     ```
-    git clone https://github.com/Michael-Blessing/Fridgeminder.git
+    git clone https://github.com/Michael-Blessing/fridgeminder.git
     ```
 2. Install the dependencies:
     ```
