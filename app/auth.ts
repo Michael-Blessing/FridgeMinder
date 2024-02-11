@@ -5,17 +5,11 @@ import Google from "next-auth/providers/google";
 import Twitter from "next-auth/providers/twitter";
 import { FirestoreAdapter } from "./FirestoreAdapter";
 import { db } from "./firebase";
-import {
-  collection,
-  doc,
-  updateDoc,
-  getDoc,
-  setDoc,
-  getDocs,
-} from "firebase/firestore";
-import { MyUser } from "../types/UserType";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  pages: {
+    signIn: "/signin",
+  },
   providers: [
     Credentials({
       credentials: {
