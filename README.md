@@ -18,18 +18,18 @@ Fridgeminder is your personal kitchen assistant. Simply upload an image of your 
 To get started with Fridgeminder, follow these steps:
 
 1. Clone the repository:
-    ```
-    git clone https://github.com/Michael-Blessing/fridgeminder.git
-    ```
+   ```
+   git clone https://github.com/Michael-Blessing/fridgeminder.git
+   ```
 2. Install the dependencies:
-    ```
-    cd fridgeminder
-    npm install
-    ```
+   ```
+   cd fridgeminder
+   npm install
+   ```
 3. Start the development server:
-    ```
-    npm run dev
-    ```
+   ```
+   npm run dev
+   ```
 4. Open your browser and navigate to `http://localhost:3000`.
 
 ## Join the Fridgeminder Community
