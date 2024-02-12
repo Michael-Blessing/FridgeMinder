@@ -19,7 +19,10 @@ const RecipeList = ({ recipesData }) => {
             },
           }}
         >
-          <div key={recipe.id} className="mb-8 p-4 border rounded-md">
+          <div
+            key={recipe.id}
+            className="mb-8 p-4 border rounded-md transition-transform transform hover:scale-105"
+          >
             <h2 className="text-xl font-bold mb-2">{recipe.title}</h2>
             <Image
               src={recipe.image}

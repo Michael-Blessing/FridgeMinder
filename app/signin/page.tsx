@@ -79,7 +79,7 @@ export default function Signin() {
               <button
                 onClick={() =>
                   signIn("credentials", {
-                    username: email,
+                    email,
                     password,
                     redirect: true,
                     callbackUrl: "/",

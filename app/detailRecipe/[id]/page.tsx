@@ -29,6 +29,29 @@ export default function DetailRecipe() {
     missingIngredientsParams,
   );
 
+  const addEverythingToCart = (type: string) => {
+    if (!session?.user)
+      return alert("Please sign in to add ingredients to your cart");
+    const user = session?.user as UserType;
+    const userCollection = collection(db, "users");
+    const userDoc = doc(userCollection, user.id);
+    if (type === "used") {
+      const newCart = user.cart.concat(parsedUsedIngredients);
+      updateDoc(userDoc, {
+        cart: newCart,
+      });
+      update({ cart: newCart });
+    } else if (type === "missed") {
+      const newCart = user.cart.concat(parsedMissedIngredients);
+      updateDoc(userDoc, {
+        cart: newCart,
+      });
+      update({ cart: newCart });
+    } else {
+      return;
+    }
+  };
+
   const addToCart = (ingredient: Ingredient) => {
     if (!session?.user)
       return alert("Please sign in to add ingredients to your cart");
@@ -76,6 +99,12 @@ export default function DetailRecipe() {
       />
       <h2 className="text-2xl font-bold mb-2">{title}</h2>
       <h3 className="text-xl">Used Ingredients:</h3>
+      <button
+        onClick={() => addEverythingToCart("used")}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Add all used to cart
+      </button>
       <ul className="flex flex-row">
         {parsedUsedIngredients &&
           parsedUsedIngredients.map((usedIngredient) => (
@@ -107,6 +136,12 @@ export default function DetailRecipe() {
           ))}
       </ul>
       <h3 className="text-xl">Missing Ingredients:</h3>
+      <button
+        onClick={() => addEverythingToCart("missed")}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Add all missing to cart
+      </button>
       <ul className="flex flex-row">
         {parsedMissedIngredients &&
           parsedMissedIngredients.map((missedIngredient) => (
@@ -137,7 +172,12 @@ export default function DetailRecipe() {
             </li>
           ))}
       </ul>
-      <Link href="/">Get back</Link>
+      <Link
+        href="/"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Get back
+      </Link>
     </div>
   );
 }

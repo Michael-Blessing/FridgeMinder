@@ -4,7 +4,9 @@ import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import Twitter from "next-auth/providers/twitter";
 import { FirestoreAdapter } from "./FirestoreAdapter";
-import { db } from "./firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { db, firebaseAuth } from "./firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   pages: {
@@ -13,10 +15,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
     Credentials({
       credentials: {
-        username: {
-          label: "Username",
-          type: "text",
-          placeholder: "Enter your username",
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "Enter your Email",
         },
         password: {
           label: "Password",
@@ -24,14 +26,24 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           placeholder: "Enter your password",
         },
       },
-      async authorize(credentials, req) {
-        const user = { id: "42", name: "admin", password: "123" };
-        if (
-          credentials?.username === user.name &&
-          credentials?.password === user.password
-        ) {
-          return user;
-        } else {
+
+      async authorize(credentials, req): Promise<any> {
+        try {
+          const userCredential = await signInWithEmailAndPassword(
+            firebaseAuth,
+            (credentials as any).email || "",
+            (credentials as any).password || "",
+          );
+
+          if (userCredential.user) {
+            const uid = userCredential.user.uid;
+            const userRef = doc(db, "users", uid);
+            const userSnap = await getDoc(userRef);
+            const user = userSnap.data();
+            return user || null;
+          }
+        } catch (error) {
+          console.error(error);
           return null;
         }
       },
@@ -51,6 +63,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
+      console.log("signIn", user, account, profile, email, credentials);
       return true;
     },
     async session({ session, token, user }) {
