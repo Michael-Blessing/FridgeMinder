@@ -26,7 +26,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           placeholder: "Enter your password",
         },
       },
-
       async authorize(credentials, req): Promise<any> {
         try {
           const userCredential = await signInWithEmailAndPassword(
@@ -40,7 +39,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             const userRef = doc(db, "users", uid);
             const userSnap = await getDoc(userRef);
             const user = userSnap.data();
-            return user || null;
+            const newUser = {
+              id: uid,
+              name: user?.name,
+              image: user?.image,
+              cart: user?.cart,
+              email: user?.email,
+              emailVertified: user?.emailVertified,
+            };
+            return newUser || null;
           }
         } catch (error) {
           console.error(error);
@@ -63,10 +70,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      console.log("signIn", user, account, profile, email, credentials);
+      console.log("user", user);
+      console.log("account", account);
+      console.log("profile", profile);
+      console.log("email", email);
+      console.log("credentials", credentials);
       return true;
     },
+    jwt({ token, user }) {
+      return { ...token, user };
+    },
     async session({ session, token, user }) {
+      console.log("session", session, token, user);
       if (session.user) {
         session.user.id = user.id;
         session.user.cart = user.cart;
@@ -75,4 +90,5 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     },
   },
   adapter: FirestoreAdapter(db as any),
+  secret: process.env.NEXTAUTH_SECRET,
 });

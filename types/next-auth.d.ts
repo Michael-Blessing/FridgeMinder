@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { DefaultSession } from "next-auth";
 import { Cart } from "./CartType";
 
 declare module "next-auth" {
