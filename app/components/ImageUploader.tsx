@@ -3,13 +3,14 @@ import { useState, Suspense, useEffect } from "react";
 import Image from "next/image";
 import RecipeList from "./RecipeList";
 import { Recipe } from "../../types/RecipeType";
-//import RecipeOptions from "./IngredientsOptions";
+import IngredientsOptions from "./IngredientsOptions";
+import { IngredientLabelType } from "../../types/IngredientLabelType";
 
 const ImageUploader = () => {
   const [file, setFile] = useState<null | File>(null);
   const [base64, setBase64] = useState<null | string>(null);
-  const [ingredients, setIngredients] = useState<string[]>([]);
-  const [recipesData, setRecipesData] = useState<null | Recipe[]>(null);
+  const [ingredients, setIngredients] = useState<IngredientLabelType[]>([]);
+  const [recipesData, setRecipesData] = useState<Recipe[]>([]);
 
   useEffect(() => {
     const storedBase64 = localStorage.getItem("uploadedBase64");
@@ -41,17 +42,7 @@ const ImageUploader = () => {
     setBase64(base64);
   };
 
-  // On click, clear the input value
-  const onClick = (e) => {
-    e.currentTarget.value = "";
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!file) {
-      return;
-    }
-
+  const fetchLabels = async () => {
     // fetching labels from base64 image
     const responseLabels = await fetch("/api/annotateImage", {
       method: "POST",
@@ -62,16 +53,26 @@ const ImageUploader = () => {
     });
     const dataLabels = await responseLabels.json();
     const labels = dataLabels.labels;
-    console.log(dataLabels);
     const ingredients = labels.map((label) => label.description);
 
     if (ingredients.length === 0) {
       return alert("No ingredients found, please try again.");
     }
 
-    setIngredients(ingredients);
-    localStorage.setItem("uploadedIngredients", JSON.stringify(ingredients));
+    const newIngredients: IngredientLabelType[] = ingredients.map(
+      (ingredient) => {
+        return {
+          ingredient: ingredient,
+          checked: true,
+        };
+      },
+    );
 
+    setIngredients(newIngredients);
+    localStorage.setItem("uploadedIngredients", JSON.stringify(newIngredients));
+  };
+
+  const fetchRecipes = async () => {
     const responseRecipes = await fetch("/api/fetchRecipes", {
       method: "POST",
       body: JSON.stringify({ ingredients }),
@@ -87,6 +88,21 @@ const ImageUploader = () => {
 
     setRecipesData(recipesData);
     localStorage.setItem("uploadedRecipesData", JSON.stringify(recipesData));
+  };
+  // On click, clear the input value
+  const onClick = (e) => {
+    e.currentTarget.value = "";
+  };
+
+  const fetchLabelsAndRecipes = async (e) => {
+    e.preventDefault();
+    if (!file) {
+      return;
+    }
+
+    await fetchLabels();
+    await fetchRecipes();
+
     // Clear the states after upload
     // setRecipesData(null);
     //setFile(null);
@@ -100,7 +116,7 @@ const ImageUploader = () => {
         <form
           method="POST"
           encType="multipart/form-data"
-          onSubmit={handleSubmit}
+          onSubmit={fetchLabelsAndRecipes}
           className=""
         >
           <label htmlFor="avatar" className="">
@@ -136,6 +152,14 @@ const ImageUploader = () => {
         <Suspense fallback={<div>Loading Recipes...</div>}>
           {recipesData ? <RecipeList recipesData={recipesData} /> : <></>}
         </Suspense>
+
+        <IngredientsOptions
+          ingredients={ingredients}
+          onChange={(selectedIngredients) =>
+            setIngredients(selectedIngredients)
+          }
+        />
+        <button onClick={fetchRecipes}>Fetch with Ingredients</button>
       </div>
     </>
   );
