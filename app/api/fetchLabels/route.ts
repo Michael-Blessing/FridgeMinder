@@ -13,7 +13,6 @@ export async function POST(req: Request) {
     };
 
     const [result] = await client.labelDetection(request);
-    console.log(result);
     const labels = result.labelAnnotations;
 
     return Response.json({ labels: labels });

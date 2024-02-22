@@ -70,8 +70,6 @@ const ImageUploader = () => {
 
     setIngredients(ingredients);
     localStorage.setItem("uploadedIngredients", JSON.stringify(ingredients));
-    console.log(ingredients);
-    // fetching recipes from labels
 
     const responseRecipes = await fetch("/api/fetchRecipes", {
       method: "POST",

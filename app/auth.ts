@@ -70,18 +70,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      console.log("user", user);
-      console.log("account", account);
-      console.log("profile", profile);
-      console.log("email", email);
-      console.log("credentials", credentials);
       return true;
     },
     jwt({ token, user }) {
       return { ...token, user };
     },
     async session({ session, token, user }) {
-      console.log("session", session, token, user);
       if (session.user) {
         session.user.id = user.id;
         session.user.cart = user.cart;

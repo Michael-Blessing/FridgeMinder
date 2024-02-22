@@ -8,11 +8,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { db } from "../firebase";
 import { jsPDF } from "jspdf";
+import { Cart } from "../../types/CartType";
 
 const ShoppingCart = () => {
   const { data: session, update } = useSession();
   const user = session?.user;
-  const cartItems = user?.cart;
+  const cartItems = user?.cart as Cart[];
+  const userId = user?.id;
+  if (!userId) return null;
   const userCollection = collection(db, "users");
   const userDoc = doc(userCollection, user.id);
 
@@ -29,13 +32,32 @@ const ShoppingCart = () => {
 
   const exportToPdf = () => {
     const pdf = new jsPDF();
+    let currentY = 20; // Adjusted initial Y position for top margin
+
     cartItems.forEach((item, index) => {
-      pdf.text(
-        `${index + 1}. ${item.name} - Quantity: ${item.amount}`,
-        10,
-        10 + index * 10,
-      );
+      // Check if there is enough space for the current item on the current page
+      if (currentY > pdf.internal.pageSize.height - 50) {
+        // Add a new page if there's not enough space
+        pdf.addPage();
+        currentY = 20; // Reset the Y position for the new page with top margin
+      }
+
+      // Styling for the text
+      pdf.setFontSize(24);
+      pdf.setFont("helvetica", "bold");
+      pdf.setTextColor(0, 0, 0); // Set text color to black
+
+      // List the cart items in the pdf with their name and amount and image
+      pdf.text(`${item.name}`, 15, currentY); // Adjusted X position
+      pdf.setFontSize(12);
+      pdf.setFont("helvetica", "normal");
+      pdf.text(`Quantity: ${item.amount}`, 15, currentY + 10); // Adjusted X position
+      pdf.addImage(item.image, "JPEG", 10, currentY + 15, 40, 40); // Adjusted Y position
+
+      // Update the Y position for the next item
+      currentY += 70; // Add some spacing between items
     });
+
     pdf.save("shopping_cart.pdf");
   };
 
@@ -49,11 +71,12 @@ const ShoppingCart = () => {
 
   function handleAmountChange(
     id: any,
+    name: string,
     event: React.ChangeEvent<HTMLInputElement>,
   ): void {
     const newCart = cartItems.map((item) => {
-      if (item.id === id) {
-        return { ...item, amount: parseInt(event.target.value) };
+      if (item.id === id || item.name === name) {
+        return { ...item, amount: parseInt(event.target.value) + item.amount };
       }
       return item;
     });
@@ -74,7 +97,9 @@ const ShoppingCart = () => {
             <input
               type="number"
               value={item.amount}
-              onChange={(event) => handleAmountChange(item.id, event)}
+              onChange={(event) =>
+                handleAmountChange(item.id, item.name, event)
+              }
               className="border rounded-md px-2 py-1"
             />
           </p>
