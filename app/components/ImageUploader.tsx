@@ -62,6 +62,7 @@ const ImageUploader = () => {
     });
     const dataLabels = await responseLabels.json();
     const labels = dataLabels.labels;
+    console.log(dataLabels)
     const ingredients = labels.map((label) => label.description);
 
     if (ingredients.length === 0) {
