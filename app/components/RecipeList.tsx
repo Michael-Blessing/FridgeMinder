@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const RecipeList = ({ recipesData }) => {
   return (
-    <div className="flex flex-wrap justify-around">
+    <div className="">
       {recipesData.map((recipe) => (
         <Link
           key={recipe.id}
@@ -19,17 +19,14 @@ const RecipeList = ({ recipesData }) => {
             },
           }}
         >
-          <div
-            key={recipe.id}
-            className="mb-8 p-4 border rounded-md transition-transform transform hover:scale-105"
-          >
-            <h2 className="text-xl font-bold mb-2">{recipe.title}</h2>
+          <div key={recipe.id} className="">
+            <h2 className="">{recipe.title}</h2>
             <Image
               src={recipe.image}
               alt={recipe.title}
               width={400}
               height={300}
-              className="w-full h-40 object-cover mb-2 rounded-md"
+              className=""
             />
             <p>
               Used Ingredients: {recipe.usedIngredientCount}, Missed

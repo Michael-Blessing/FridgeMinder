@@ -89,7 +89,7 @@ export default function DetailRecipe() {
   };
 
   return (
-    <div className="bg-purple-200 rounded-md shadow-md m-4 w-80 min-w-full">
+    <div className="">
       <Image
         src={image}
         alt={title}
@@ -97,26 +97,23 @@ export default function DetailRecipe() {
         height={400}
         className="rounded-md"
       />
-      <h2 className="text-2xl font-bold mb-2">{title}</h2>
-      <h3 className="text-xl">Used Ingredients:</h3>
-      <button
-        onClick={() => addEverythingToCart("used")}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
+      <h2 className="">{title}</h2>
+      <h3 className="">Used Ingredients:</h3>
+      <button onClick={() => addEverythingToCart("used")} className="">
         Add all used to cart
       </button>
-      <ul className="flex flex-row">
+      <ul className="">
         {parsedUsedIngredients &&
           parsedUsedIngredients.map((usedIngredient) => (
             <li
               key={usedIngredient.id}
-              className="px-8 relative transform transition duration-500 ease-in-out hover:scale-110"
+              className=""
               onMouseEnter={() => setHoveredId(usedIngredient.id)}
               onMouseLeave={() => setHoveredId(null)}
               onClick={() => addToCart(usedIngredient)}
             >
               <h4>{`${usedIngredient.name} - ${usedIngredient.amount} ${usedIngredient.unit}`}</h4>
-              <div className="relative overflow-hidden">
+              <div className="">
                 <Image
                   src={usedIngredient.image}
                   alt={usedIngredient.name}
@@ -125,35 +122,28 @@ export default function DetailRecipe() {
                   className="rounded-md"
                 />
                 {hoveredId === usedIngredient.id && (
-                  <FontAwesomeIcon
-                    icon={faPlus}
-                    size="2x"
-                    className="absolute top-0 right-0"
-                  />
+                  <FontAwesomeIcon icon={faPlus} size="2x" className="" />
                 )}
               </div>
             </li>
           ))}
       </ul>
-      <h3 className="text-xl">Missing Ingredients:</h3>
-      <button
-        onClick={() => addEverythingToCart("missed")}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
+      <h3 className="">Missing Ingredients:</h3>
+      <button onClick={() => addEverythingToCart("missed")} className="">
         Add all missing to cart
       </button>
-      <ul className="flex flex-row">
+      <ul className="">
         {parsedMissedIngredients &&
           parsedMissedIngredients.map((missedIngredient) => (
             <li
               key={missedIngredient.id}
-              className="px-8 relative transform transition duration-500 ease-in-out hover:scale-110"
+              className=""
               onMouseEnter={() => setHoveredId(missedIngredient.id)}
               onMouseLeave={() => setHoveredId(null)}
               onClick={() => addToCart(missedIngredient)}
             >
               <h4>{`${missedIngredient.name} - ${missedIngredient.amount} ${missedIngredient.unit}`}</h4>
-              <div className="relative overflow-hidden">
+              <div className="">
                 <Image
                   src={missedIngredient.image}
                   alt={missedIngredient.name}
@@ -162,20 +152,13 @@ export default function DetailRecipe() {
                   className="rounded-md"
                 />
                 {hoveredId === missedIngredient.id && (
-                  <FontAwesomeIcon
-                    icon={faPlus}
-                    size="2x"
-                    className="absolute top-0 right-0"
-                  />
+                  <FontAwesomeIcon icon={faPlus} size="2x" className="" />
                 )}
               </div>
             </li>
           ))}
       </ul>
-      <Link
-        href="/"
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
+      <Link href="/" className="">
         Get back
       </Link>
     </div>

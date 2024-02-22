@@ -87,12 +87,12 @@ const ShoppingCart = () => {
   }
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Shopping Cart</h1>
+    <div className="">
+      <h1 className="">Shopping Cart</h1>
       {cartItems?.map((item) => (
-        <div key={item.id} className="mb-4 border-b-2 pb-4">
-          <p className="text-lg font-semibold">{item.name}</p>
-          <p className="text-gray-600">
+        <div key={item.id} className="">
+          <p className="">{item.name}</p>
+          <p className="">
             Quantity:{" "}
             <input
               type="number"
@@ -100,7 +100,7 @@ const ShoppingCart = () => {
               onChange={(event) =>
                 handleAmountChange(item.id, item.name, event)
               }
-              className="border rounded-md px-2 py-1"
+              className=""
             />
           </p>
           <Image
@@ -108,26 +108,17 @@ const ShoppingCart = () => {
             alt={item.name}
             width={100}
             height={100}
-            className="w-full h-40 object-cover mb-2 rounded-md"
+            className=""
           />
-          <button
-            onClick={() => removeFromCart(item.id)}
-            className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
-          >
+          <button onClick={() => removeFromCart(item.id)} className="">
             <FontAwesomeIcon icon={faTrash} size="2x" />
           </button>
         </div>
       ))}
-      <button
-        onClick={exportToTxt}
-        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-      >
+      <button onClick={exportToTxt} className="">
         Export as TXT
       </button>
-      <button
-        onClick={exportToPdf}
-        className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
-      >
+      <button onClick={exportToPdf} className="">
         Export as PDF
       </button>
     </div>

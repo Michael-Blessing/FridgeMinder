@@ -62,7 +62,7 @@ const ImageUploader = () => {
     });
     const dataLabels = await responseLabels.json();
     const labels = dataLabels.labels;
-    console.log(dataLabels)
+    console.log(dataLabels);
     const ingredients = labels.map((label) => label.description);
 
     if (ingredients.length === 0) {
@@ -95,15 +95,15 @@ const ImageUploader = () => {
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center w-70 h-70 px-6 bg-purple-200">
-        <h1 className="text-3xl font-bold mb-4">Upload Image</h1>
+      <div className="">
+        <h1 className="">Upload Image</h1>
         <form
           method="POST"
           encType="multipart/form-data"
           onSubmit={handleSubmit}
-          className="mb-8 flex-col"
+          className=""
         >
-          <label htmlFor="avatar" className="block text-gray-600">
+          <label htmlFor="avatar" className="">
             Choose a file
           </label>
           <input
@@ -113,25 +113,22 @@ const ImageUploader = () => {
             accept="image/*"
             onChange={onFileChange}
             onClick={onClick}
-            className="mt-2 p-2 border rounded-md"
+            className=""
           />
-          <button
-            type="submit"
-            className="text-lg font-bold border-2 rounded-lg border-purple-400 hover:bg-gradient-to-r from-purple-800 to-blue-800 hover:text-white hover:border-pink-200 p-1"
-          >
+          <button type="submit" className="">
             Upload
           </button>
         </form>
 
         {base64 && (
-          <div className="mb-8">
+          <div className="">
             <Image
               src={base64}
               sizes="100vw"
               width="0"
               height="0"
               alt="Uploaded Image"
-              className="rounded-md w-full h-auto"
+              className=""
             />
           </div>
         )}
