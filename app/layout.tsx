@@ -23,9 +23,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <SessionProvider session={session}>
           <Navbar />
-          <main className="flex justify-center items-start p-6 min-h-screen bg-purple-200">
-            {children}
-          </main>
+          <main className="">{children}</main>
         </SessionProvider>
       </body>
     </html>

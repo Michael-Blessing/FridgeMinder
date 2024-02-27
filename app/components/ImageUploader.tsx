@@ -3,13 +3,14 @@ import { useState, Suspense, useEffect } from "react";
 import Image from "next/image";
 import RecipeList from "./RecipeList";
 import { Recipe } from "../../types/RecipeType";
-//import RecipeOptions from "./IngredientsOptions";
+import IngredientsOptions from "./IngredientsOptions";
+import { IngredientLabelType } from "../../types/IngredientLabelType";
 
 const ImageUploader = () => {
   const [file, setFile] = useState<null | File>(null);
   const [base64, setBase64] = useState<null | string>(null);
-  const [ingredients, setIngredients] = useState<string[]>([]);
-  const [recipesData, setRecipesData] = useState<null | Recipe[]>(null);
+  const [ingredients, setIngredients] = useState<IngredientLabelType[]>([]);
+  const [recipesData, setRecipesData] = useState<Recipe[]>([]);
 
   useEffect(() => {
     const storedBase64 = localStorage.getItem("uploadedBase64");
@@ -41,17 +42,7 @@ const ImageUploader = () => {
     setBase64(base64);
   };
 
-  // On click, clear the input value
-  const onClick = (e) => {
-    e.currentTarget.value = "";
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!file) {
-      return;
-    }
-
+  const fetchLabels = async () => {
     // fetching labels from base64 image
     const responseLabels = await fetch("/api/annotateImage", {
       method: "POST",
@@ -68,11 +59,20 @@ const ImageUploader = () => {
       return alert("No ingredients found, please try again.");
     }
 
-    setIngredients(ingredients);
-    localStorage.setItem("uploadedIngredients", JSON.stringify(ingredients));
-    console.log(ingredients);
-    // fetching recipes from labels
+    const newIngredients: IngredientLabelType[] = ingredients.map(
+      (ingredient) => {
+        return {
+          ingredient: ingredient,
+          checked: true,
+        };
+      },
+    );
 
+    setIngredients(newIngredients);
+    localStorage.setItem("uploadedIngredients", JSON.stringify(newIngredients));
+  };
+
+  const fetchRecipes = async () => {
     const responseRecipes = await fetch("/api/fetchRecipes", {
       method: "POST",
       body: JSON.stringify({ ingredients }),
@@ -88,6 +88,21 @@ const ImageUploader = () => {
 
     setRecipesData(recipesData);
     localStorage.setItem("uploadedRecipesData", JSON.stringify(recipesData));
+  };
+  // On click, clear the input value
+  const onClick = (e) => {
+    e.currentTarget.value = "";
+  };
+
+  const fetchLabelsAndRecipes = async (e) => {
+    e.preventDefault();
+    if (!file) {
+      return;
+    }
+
+    await fetchLabels();
+    await fetchRecipes();
+
     // Clear the states after upload
     // setRecipesData(null);
     //setFile(null);
@@ -96,15 +111,15 @@ const ImageUploader = () => {
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center w-70 h-70 px-6 bg-purple-200">
-        <h1 className="text-3xl font-bold mb-4">Upload Image</h1>
+      <div className="">
+        <h1 className="">Upload Image</h1>
         <form
           method="POST"
           encType="multipart/form-data"
-          onSubmit={handleSubmit}
-          className="mb-8 flex-col"
+          onSubmit={fetchLabelsAndRecipes}
+          className=""
         >
-          <label htmlFor="avatar" className="block text-gray-600">
+          <label htmlFor="avatar" className="">
             Choose a file
           </label>
           <input
@@ -114,25 +129,22 @@ const ImageUploader = () => {
             accept="image/*"
             onChange={onFileChange}
             onClick={onClick}
-            className="mt-2 p-2 border rounded-md"
+            className=""
           />
-          <button
-            type="submit"
-            className="text-lg font-bold border-2 rounded-lg border-purple-400 hover:bg-gradient-to-r from-purple-800 to-blue-800 hover:text-white hover:border-pink-200 p-1"
-          >
+          <button type="submit" className="">
             Upload
           </button>
         </form>
 
         {base64 && (
-          <div className="mb-8">
+          <div className="">
             <Image
               src={base64}
               sizes="100vw"
               width="0"
               height="0"
               alt="Uploaded Image"
-              className="rounded-md w-full h-auto"
+              className=""
             />
           </div>
         )}
@@ -140,6 +152,14 @@ const ImageUploader = () => {
         <Suspense fallback={<div>Loading Recipes...</div>}>
           {recipesData ? <RecipeList recipesData={recipesData} /> : <></>}
         </Suspense>
+
+        <IngredientsOptions
+          ingredients={ingredients}
+          onChange={(selectedIngredients) =>
+            setIngredients(selectedIngredients)
+          }
+        />
+        <button onClick={fetchRecipes}>Fetch with Ingredients</button>
       </div>
     </>
   );

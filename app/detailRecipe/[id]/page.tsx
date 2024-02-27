@@ -150,7 +150,7 @@ export default function DetailRecipe() {
           parsedMissedIngredients.map((missedIngredient) => (
             <li
               key={missedIngredient.id}
-              className="px-8 relative transform transition duration-500 ease-in-out hover:scale-110"
+              className=""
               onMouseEnter={() => setHoveredId(missedIngredient.id)}
               onMouseLeave={() => setHoveredId(null)}
               onClick={() => addToCart(missedIngredient)}

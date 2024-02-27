@@ -11,16 +11,16 @@ export default function Navbar() {
   const user = session?.user as UserType;
 
   return (
-    <nav className="flex justify-between items-center w-full h-28 px-6 bg-gradient-to-b from-pink-200 to-purple-200">
-      <div className="flex items-center">
-        <a href="/" className="text-3xl font-bold text-blue-700">
+    <nav className="">
+      <div className="">
+        <a href="/" className="">
           FridgeMinder
         </a>
       </div>
-      <div className="flex items-center">
+      <div className="">
         {user ? (
-          <div className="flex flex-container flex-row items-center">
-            <h6 className="text-lg font-bold pr-8">Welcome, {user.name}</h6>
+          <div className="">
+            <h6 className="">Welcome, {user.name}</h6>
             <Link
               style={{ position: "relative", padding: "0 2em 0 0" }}
               href={{ pathname: `/shoppingCart` }}
@@ -44,26 +44,20 @@ export default function Navbar() {
               </div>
               <FontAwesomeIcon icon={faCartShopping} size="2x" />
             </Link>
-            <div className="flex flex-col">
+            <div className="">
               <Image
                 src={user.image}
                 alt="user profile picture"
                 width={75}
                 height={75}
               />
-              <a
-                href="/api/auth/signout"
-                className="text-lg font-bold border-2 rounded-lg border-purple-400 hover:bg-gradient-to-r from-purple-800 to-blue-800 hover:text-white hover:border-pink-200 p-1"
-              >
+              <a href="/api/auth/signout" className="">
                 Sign Out
               </a>
             </div>
           </div>
         ) : (
-          <a
-            href="/api/auth/signin"
-            className="text-lg font-bold border-2 rounded-lg border-purple-400 hover:bg-gradient-to-r from-purple-800 to-blue-800 hover:text-white hover:border-pink-200 p-1"
-          >
+          <a href="/api/auth/signin" className="">
             Sign In
           </a>
         )}

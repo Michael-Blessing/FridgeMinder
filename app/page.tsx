@@ -8,11 +8,7 @@ export default function Home() {
 
   return (
     <>
-      {session ? (
-        <ImageUploader />
-      ) : (
-        <h4 className="text-2xl">Sign in for features</h4>
-      )}
+      {session ? <ImageUploader /> : <h4 className="">Sign in for features</h4>}
     </>
   );
 }
