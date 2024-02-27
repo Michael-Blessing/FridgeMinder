@@ -11,6 +11,7 @@ import { collection, updateDoc, doc } from "firebase/firestore";
 import { UserType } from "../../../types/UserType";
 import { Cart } from "../../../types/CartType";
 import { Ingredient } from "../../../types/IngredientType";
+import "./detail.css"
 
 export default function DetailRecipe() {
   const { data: session, update } = useSession();
@@ -89,34 +90,36 @@ export default function DetailRecipe() {
   };
 
   return (
-    <div className="bg-purple-200 rounded-md shadow-md m-4 w-80 min-w-full">
-      <Image
-        src={image}
-        alt={title}
-        width={600}
-        height={400}
-        className="rounded-md"
-      />
-      <h2 className="text-2xl font-bold mb-2">{title}</h2>
+    <div className="recipe-card">
+      <div className="adv-recipe">
+        <Image
+          src={image}
+          alt={title}
+          width={600}
+          height={400}
+          className="rounded-md width-sitelong"
+        />
+        <h2 className="text-2xl font-bold">{title}</h2>
+      </div>
       <h3 className="text-xl">Used Ingredients:</h3>
       <button
         onClick={() => addEverythingToCart("used")}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="btn-primary"
       >
         Add all used to cart
       </button>
-      <ul className="flex flex-row">
+      <ul className="ingredient-list">
         {parsedUsedIngredients &&
           parsedUsedIngredients.map((usedIngredient) => (
             <li
               key={usedIngredient.id}
-              className="px-8 relative transform transition duration-500 ease-in-out hover:scale-110"
+              className="ingredient-item"
               onMouseEnter={() => setHoveredId(usedIngredient.id)}
               onMouseLeave={() => setHoveredId(null)}
               onClick={() => addToCart(usedIngredient)}
             >
-              <h4>{`${usedIngredient.name} - ${usedIngredient.amount} ${usedIngredient.unit}`}</h4>
-              <div className="relative overflow-hidden">
+              <h4 className="ingredient-text">{`${usedIngredient.name} - ${usedIngredient.amount} ${usedIngredient.unit}`}</h4>
+              <div className="image-container">
                 <Image
                   src={usedIngredient.image}
                   alt={usedIngredient.name}
@@ -128,7 +131,7 @@ export default function DetailRecipe() {
                   <FontAwesomeIcon
                     icon={faPlus}
                     size="2x"
-                    className="absolute top-0 right-0"
+                    className="plus-icon"
                   />
                 )}
               </div>
@@ -138,11 +141,11 @@ export default function DetailRecipe() {
       <h3 className="text-xl">Missing Ingredients:</h3>
       <button
         onClick={() => addEverythingToCart("missed")}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="btn-primary mt-4 p-2 text-center"
       >
         Add all missing to cart
       </button>
-      <ul className="flex flex-row">
+      <ul className="ingredient-list">
         {parsedMissedIngredients &&
           parsedMissedIngredients.map((missedIngredient) => (
             <li
@@ -153,7 +156,7 @@ export default function DetailRecipe() {
               onClick={() => addToCart(missedIngredient)}
             >
               <h4>{`${missedIngredient.name} - ${missedIngredient.amount} ${missedIngredient.unit}`}</h4>
-              <div className="relative overflow-hidden">
+              <div className="image-container ingredient-item">
                 <Image
                   src={missedIngredient.image}
                   alt={missedIngredient.name}
@@ -165,7 +168,7 @@ export default function DetailRecipe() {
                   <FontAwesomeIcon
                     icon={faPlus}
                     size="2x"
-                    className="absolute top-0 right-0"
+                    className="plus-icon"
                   />
                 )}
               </div>
@@ -174,10 +177,11 @@ export default function DetailRecipe() {
       </ul>
       <Link
         href="/"
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="btn-primary mt-4 p-2 text-center"
       >
         Get back
       </Link>
     </div>
   );
 }
+
