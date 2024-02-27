@@ -32,34 +32,39 @@ const ShoppingCart = () => {
 
   const exportToPdf = () => {
     const pdf = new jsPDF();
+    const pageWidth = pdf.internal.pageSize.width;
+
     let currentY = 20; // Adjusted initial Y position for top margin
 
     cartItems.forEach((item, index) => {
-      // Check if there is enough space for the current item on the current page
-      if (currentY > pdf.internal.pageSize.height - 50) {
-        // Add a new page if there's not enough space
-        pdf.addPage();
-        currentY = 20; // Reset the Y position for the new page with top margin
-      }
+        // Check if there is enough space for the current item on the current page
+        if (currentY > pdf.internal.pageSize.height - 50) {
+            // Add a new page if there's not enough space
+            pdf.addPage();
+            currentY = 20; // Reset the Y position for the new page with top margin
+        }
 
-      // Styling for the text
-      pdf.setFontSize(24);
-      pdf.setFont("helvetica", "bold");
-      pdf.setTextColor(0, 0, 0); // Set text color to black
+        // Styling for the text
+        pdf.setFontSize(24);
+        pdf.setFont("helvetica", "bold");
+        pdf.setTextColor(0, 0, 0); // Set text color to black
 
-      // List the cart items in the pdf with their name and amount and image
-      pdf.text(`${item.name}`, 15, currentY); // Adjusted X position
-      pdf.setFontSize(12);
-      pdf.setFont("helvetica", "normal");
-      pdf.text(`Quantity: ${item.amount}`, 15, currentY + 10); // Adjusted X position
-      pdf.addImage(item.image, "JPEG", 10, currentY + 15, 40, 40); // Adjusted Y position
+        // Calculate the center position for the text
+        const centerX = 50;
 
-      // Update the Y position for the next item
-      currentY += 70; // Add some spacing between items
+        // List the cart items in the pdf with their name and amount and image
+        pdf.text(item.name, centerX, currentY); // Centered X position
+        pdf.setFontSize(12);
+        pdf.setFont("helvetica", "normal");
+        pdf.text(`Quantity: ${item.amount}`, centerX, currentY + 10); // Centered X position
+        pdf.addImage(item.image, "JPEG", 10, currentY + 15, 40, 40); // Adjusted Y position
+
+        // Update the Y position for the next item
+        currentY += 70; // Add some spacing between items
     });
 
     pdf.save("shopping_cart.pdf");
-  };
+};
 
   const removeFromCart = (id) => {
     const newCart = cartItems.filter((item) => item.id !== id);
