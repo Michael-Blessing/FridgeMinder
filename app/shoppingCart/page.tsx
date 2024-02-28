@@ -3,7 +3,7 @@ import "../../styles/globals.css";
 import React from "react";
 import { useSession } from "next-auth/react";
 import { collection, updateDoc, doc } from "firebase/firestore";
-import { faX } from "@fortawesome/free-solid-svg-icons";
+import { faX, faFileLines, faFilePdf } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { db } from "../firebase";
@@ -125,9 +125,11 @@ const ShoppingCart = () => {
       ))}
       <button onClick={exportToTxt} className="export-txt">
         Export as TXT
+        <FontAwesomeIcon icon={faFileLines} size="2x" />
       </button>
       <button onClick={exportToPdf} className="export-pdf">
         Export as PDF
+        <FontAwesomeIcon icon={faFilePdf} size="2x" />
       </button>
     </div>
   );
