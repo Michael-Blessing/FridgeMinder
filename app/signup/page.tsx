@@ -7,6 +7,7 @@ import { db } from "../firebase";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { signIn } from "next-auth/react";
 import "../../styles/globals.css";
+import "./signup.css";
 
 export default function Signup() {
   const [email, setEmail] = useState<string>("");
@@ -44,18 +45,17 @@ export default function Signup() {
 
   return (
     <>
-      <div className="">
-        <div className="">
-          <h2 className="">Sign up</h2>
-        </div>
-
-        <div className="">
-          <div className="">
-            <div>
-              <label htmlFor="email" className="">
+      <div className="super-container">
+        <div className="aspect-container">
+          <div className="text-container">
+            <h2 className="title">Sign up</h2>
+          </div>
+          <div className="fourth-container">
+            <div className="tiny-container">
+              <label htmlFor="email" className="label-text">
                 Email address
               </label>
-              <div className="">
+              <div className="input-container">
                 <input
                   id="email"
                   name="email"
@@ -63,18 +63,18 @@ export default function Signup() {
                   autoComplete="email"
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className=""
+                  className="input-field"
                 />
               </div>
             </div>
 
-            <div>
-              <div className="">
-                <label htmlFor="password" className="">
+            <div className="tiny-container">
+              <div>
+                <label htmlFor="password" className="label-text">
                   Password
                 </label>
               </div>
-              <div className="">
+              <div className="input-container">
                 <input
                   id="password"
                   name="password"
@@ -82,17 +82,17 @@ export default function Signup() {
                   autoComplete="current-password"
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className=""
+                  className="input-field"
                 />
               </div>
             </div>
-            <div>
-              <div className="">
-                <label htmlFor="password" className="">
+            <div className="tiny-container">
+              <div>
+                <label htmlFor="password" className="label-text">
                   Password Again
                 </label>
               </div>
-              <div className="">
+              <div className="input-container">
                 <input
                   id="passwordAgain"
                   name="passwordAgain"
@@ -100,12 +100,12 @@ export default function Signup() {
                   autoComplete="current-password"
                   onChange={(e) => setPasswordAgain(e.target.value)}
                   required
-                  className=""
+                  className="input-field"
                 />
               </div>
             </div>
 
-            <div>
+            <div className="buetton-container">
               <button
                 disabled={
                   !email ||
@@ -114,7 +114,7 @@ export default function Signup() {
                   password !== passwordAgain
                 }
                 onClick={() => signup()}
-                className=""
+                className="buetton"
               >
                 Sign Up
               </button>
