@@ -1,0 +1,83 @@
+.container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(
+    to right,
+    rgb(167, 187, 200),
+    rgb(134, 155, 144)
+  ); /* Use your preferred gradient colors */
+  padding: 20px; /* Add padding to enhance the gradient visibility */
+  max-width: 100vw;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #fff; /* Text color for better contrast on gradient background */
+}
+
+.item {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.item-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.item-quantity {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #777;
+}
+
+.item-wrapper {
+  position: relative;
+}
+
+.delete {
+  position: absolute;
+  top: 10px; /* Adjust the top value as needed */
+  right: 10px; /* Adjust the right value as needed */
+  background-color: transparent;
+  border: none;
+  color: #e74c3c;
+  cursor: pointer;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.delete:hover {
+  color: #c0392b;
+  transform: scale(1.1); /* Add a slight scale effect on hover */
+}
+
+.export-txt,
+.export-pdf {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.export-txt:hover,
+.export-pdf:hover {
+  background-color: #2980b9;
+}

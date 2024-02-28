@@ -3,12 +3,13 @@ import "../../styles/globals.css";
 import React from "react";
 import { useSession } from "next-auth/react";
 import { collection, updateDoc, doc } from "firebase/firestore";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { db } from "../firebase";
 import { jsPDF } from "jspdf";
 import { Cart } from "../../types/CartType";
+import "./shoppingCart.css";
 
 const ShoppingCart = () => {
   const { data: session, update } = useSession();
@@ -81,7 +82,7 @@ const ShoppingCart = () => {
   ): void {
     const newCart = cartItems.map((item) => {
       if (item.id === id || item.name === name) {
-        return { ...item, amount: parseInt(event.target.value) + item.amount };
+        return { ...item, amount: parseInt(event.target.value) };
       }
       return item;
     });
@@ -92,38 +93,40 @@ const ShoppingCart = () => {
   }
 
   return (
-    <div className="">
-      <h1 className="">Shopping Cart</h1>
+    <div className="container">
+      <h1 className="title">Shopping Cart</h1>
       {cartItems?.map((item) => (
-        <div key={item.id} className="">
-          <p className="">{item.name}</p>
-          <p className="">
-            Quantity:{" "}
-            <input
-              type="number"
-              value={item.amount}
-              onChange={(event) =>
-                handleAmountChange(item.id, item.name, event)
-              }
-              className=""
+        <div key={item.id} className="item-wrapper">
+          <div className="item">
+            <p className="item-name">{item.name}</p>
+            <p className="item-quantity">
+              Quantity:{" "}
+              <input
+                type="number"
+                value={item.amount}
+                onChange={(event) =>
+                  handleAmountChange(item.id, item.name, event)
+                }
+                className=""
+              />
+            </p>
+            <Image
+              src={item.image}
+              alt={item.name}
+              width={100}
+              height={100}
+              className="item-image"
             />
-          </p>
-          <Image
-            src={item.image}
-            alt={item.name}
-            width={100}
-            height={100}
-            className=""
-          />
-          <button onClick={() => removeFromCart(item.id)} className="">
-            <FontAwesomeIcon icon={faTrash} size="2x" />
+          </div>
+          <button onClick={() => removeFromCart(item.id)} className="delete">
+            <FontAwesomeIcon icon={faX} size="2x" />
           </button>
         </div>
       ))}
-      <button onClick={exportToTxt} className="">
+      <button onClick={exportToTxt} className="export-txt">
         Export as TXT
       </button>
-      <button onClick={exportToPdf} className="">
+      <button onClick={exportToPdf} className="export-pdf">
         Export as PDF
       </button>
     </div>

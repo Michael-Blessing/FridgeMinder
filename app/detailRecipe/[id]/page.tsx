@@ -3,7 +3,7 @@ import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faListCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSession } from "next-auth/react";
 import { db } from "../../firebase";
@@ -12,6 +12,7 @@ import { UserType } from "../../../types/UserType";
 import { Cart } from "../../../types/CartType";
 import { Ingredient } from "../../../types/IngredientType";
 import "./detail.css"
+
 
 export default function DetailRecipe() {
   const { data: session, update } = useSession();
@@ -107,6 +108,11 @@ export default function DetailRecipe() {
         className="btn-primary"
       >
         Add all used to cart
+        <FontAwesomeIcon
+                    icon={faListCheck}
+                    size="2x"
+                    className="fa-list-check"
+                  />
       </button>
       <ul className="ingredient-list">
         {parsedUsedIngredients &&
@@ -144,6 +150,11 @@ export default function DetailRecipe() {
         className="btn-primary mt-4 p-2 text-center"
       >
         Add all missing to cart
+         <FontAwesomeIcon
+                    icon={faListCheck}
+                    size="2x"
+                    className="fa-list-check"
+                  /> 
       </button>
       <ul className="ingredient-list">
         {parsedMissedIngredients &&
