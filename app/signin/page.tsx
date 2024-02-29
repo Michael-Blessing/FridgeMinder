@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import "../../styles/globals.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./signin.css";
 
 export default function Signin() {
   const [email, setEmail] = useState("");
@@ -16,18 +17,17 @@ export default function Signin() {
   const router = useRouter();
   return (
     <>
-      <div className="">
-        <div className="">
-          <h2 className="">Sign in to your account</h2>
-        </div>
-
-        <div className="">
-          <div className="">
-            <div>
-              <label htmlFor="email" className="">
+      <div className="super-container">
+        <div className="aspect-container">
+          <div className="text-container">
+            <h2 className="title">Login</h2>
+          </div>
+          <div className="fourth-container">
+            <div className="tiny-container">
+              <label htmlFor="email" className="label-text">
                 Email address
               </label>
-              <div className="">
+              <div className="input-container">
                 <input
                   id="email"
                   name="email"
@@ -35,26 +35,26 @@ export default function Signin() {
                   autoComplete="email"
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className=""
+                  className="input-field"
                 />
               </div>
             </div>
 
-            <div>
+            <div className="tiny-container">
               <div className="">
-                <label htmlFor="password" className="">
+                <label htmlFor="password" className="label-text">
                   Password
                 </label>
                 <div className="">
                   <div
                     onClick={() => router.push("/forgot-password")}
-                    className=""
+                    className="link-text"
                   >
                     Forgot password?
                   </div>
                 </div>
               </div>
-              <div className="">
+              <div className="input-container">
                 <input
                   id="password"
                   name="password"
@@ -62,12 +62,12 @@ export default function Signin() {
                   autoComplete="current-password"
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className=""
+                  className="input-field"
                 />
               </div>
             </div>
 
-            <div>
+            <div className="buetton-container">
               <button
                 onClick={() =>
                   signIn("credentials", {
@@ -78,41 +78,43 @@ export default function Signin() {
                   })
                 }
                 disabled={!email || !password}
-                className=""
+                className="buetton"
               >
                 Sign in
               </button>
             </div>
           </div>
 
-          <p className="">
-            Not a member?{" "}
-            <button onClick={() => router.push("signup")} className="">
-              Sign Up
-            </button>
-          </p>
-          <div className="">
+          <div className="buetton-container">
+            <p className="label-text">
+              Not a member?{" "}
+              <button onClick={() => router.push("signup")} className="buetton">
+                Sign Up
+              </button>
+            </p>
+          </div>
+          <div className="buetton-container">
             <button
               onClick={() => signIn("google", { callbackUrl: "/" })}
-              className=""
+              className="buetton, buetton-google"
             >
-              <FontAwesomeIcon icon={faGoogle} className="mr-2" /> Sign in with
+              <FontAwesomeIcon icon={faGoogle} className="buetton-icon" /> Sign in with
               Google
             </button>
 
             <button
               onClick={() => signIn("twitter", { callbackUrl: "/" })}
-              className=""
+              className="buetton-twitter"
             >
-              <FontAwesomeIcon icon={faTwitter} className="mr-2" /> Sign in with
+              <FontAwesomeIcon icon={faTwitter} className="buetton-icon" /> Sign in with
               Twitter
             </button>
 
             <button
               onClick={() => signIn("github", { callbackUrl: "/" })}
-              className=""
+              className="buetton-github"
             >
-              <FontAwesomeIcon icon={faGithub} className="" /> Sign in with
+              <FontAwesomeIcon icon={faGithub} className="buetton-icon" /> Sign in with
               GitHub
             </button>
           </div>
