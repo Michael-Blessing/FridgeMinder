@@ -3,10 +3,9 @@ import Github from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import Twitter from "next-auth/providers/twitter";
-import { FirestoreAdapter } from "./FirestoreAdapter";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { db, firebaseAuth } from "./firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   pages: {
@@ -70,19 +69,99 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
+      // create user in db if not exists after account provider sign in with google twitter or github
+      if (account) {
+        if (account.provider === "google") {
+          const userRef = doc(db, "users", user.id);
+          const userSnap = await getDoc(userRef);
+          if (!userSnap.exists()) {
+            const newUser = {
+              id: user.id,
+              name: user.name,
+              image: user.image,
+              cart: [],
+              email: user.email,
+              emailVertified: null,
+            };
+            await setDoc(userRef, newUser);
+          }
+        } else if (account.provider === "twitter") {
+          const userRef = doc(db, "users", user.id);
+          const userSnap = await getDoc(userRef);
+          if (!userSnap.exists()) {
+            const newUser = {
+              id: user.id,
+              name: user.name,
+              image: user.image,
+              cart: [],
+              email: null,
+              emailVertified: null,
+            };
+            await setDoc(userRef, newUser);
+          }
+        } else if (account.provider === "github") {
+          const userRef = doc(db, "users", user.id);
+          const userSnap = await getDoc(userRef);
+          if (!userSnap.exists()) {
+            const newUser = {
+              id: user.id,
+              name: user.name,
+              image: user.image,
+              cart: [],
+              email: user.email,
+              emailVertified: null,
+            };
+            await setDoc(userRef, newUser);
+          }
+        } else {
+        }
+      }
       return true;
     },
-    jwt({ token, user }) {
-      return { ...token, user };
+    async jwt({ token, user, trigger, session }) {
+      if (trigger === "update") {
+        if (session.cart) {
+          token.cart = session.cart;
+          return {
+            ...token,
+            ...session,
+          };
+        }
+      }
+
+      if (user) {
+        token = {
+          ...token,
+          ...user,
+        };
+      }
+
+      return token;
     },
     async session({ session, token, user }) {
-      if (session.user) {
+      if (session.user && user) {
         session.user.id = user.id;
         session.user.cart = user.cart;
       }
+
+      if (session.user && token) {
+        // fetch user from db
+        // check if cart is in token
+        session.user.id = token.sub as string;
+        if (token.cart) {
+          session.user.cart = token.cart as Array<any>;
+        } else {
+          const userRef = doc(db, "users", token.sub as string);
+          const userSnap = await getDoc(userRef);
+          if (userSnap.exists()) {
+            const user = userSnap.data();
+            session.user.cart = user?.cart;
+          }
+        }
+      }
+
       return session;
     },
   },
-  adapter: FirestoreAdapter(db as any),
   secret: process.env.NEXTAUTH_SECRET,
 });

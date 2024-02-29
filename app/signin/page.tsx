@@ -98,24 +98,24 @@ export default function Signin() {
               onClick={() => signIn("google", { callbackUrl: "/" })}
               className="buetton, buetton-google"
             >
-              <FontAwesomeIcon icon={faGoogle} className="buetton-icon" /> Sign in with
-              Google
+              <FontAwesomeIcon icon={faGoogle} className="buetton-icon" /> Sign
+              in with Google
             </button>
 
             <button
               onClick={() => signIn("twitter", { callbackUrl: "/" })}
               className="buetton-twitter"
             >
-              <FontAwesomeIcon icon={faTwitter} className="buetton-icon" /> Sign in with
-              Twitter
+              <FontAwesomeIcon icon={faTwitter} className="buetton-icon" /> Sign
+              in with Twitter
             </button>
 
             <button
               onClick={() => signIn("github", { callbackUrl: "/" })}
               className="buetton-github"
             >
-              <FontAwesomeIcon icon={faGithub} className="buetton-icon" /> Sign in with
-              GitHub
+              <FontAwesomeIcon icon={faGithub} className="buetton-icon" /> Sign
+              in with GitHub
             </button>
           </div>
         </div>
