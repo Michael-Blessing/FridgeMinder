@@ -1,0 +1,84 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #d1d7f0;
+}
+
+.logo a {
+  text-decoration: none;
+  color: #333;
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.profile-and-cart {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.shoppingcart-and-number {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.profile-and-signout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.profile-picture img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  align-self: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+.shopping-cart {
+  position: absolute;
+  background-color: #ff4136;
+  border-radius: 50%;
+  color: white;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  align-self: center;
+  top: -90px;
+  right: 8px;
+  margin-top: 60px;
+}
+
+.sign-out,
+.sign-in-msg {
+  color: white;
+  text-decoration: none;
+  align-self: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  margin-right: 10px;
+}
+
+.sign-in-msg:hover {
+  background-color: #0056b3;
+}
+
+.welcome-msg {
+  text-decoration: none;
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  padding-left: space-between;
+}
