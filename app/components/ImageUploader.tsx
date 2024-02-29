@@ -165,14 +165,14 @@ const ImageUploader = () => {
   );
 };
 
-const toBase64 = (file: File) => {
-  return new Promise((resolve, reject) => {
+const toBase64 = async (file: File) => {
+  return new Promise<string>((resolve, reject) => {
     const fileReader = new FileReader();
 
     fileReader.readAsDataURL(file);
 
     fileReader.onload = () => {
-      resolve(fileReader.result);
+      resolve(fileReader.result as string);
     };
 
     fileReader.onerror = (error) => {
