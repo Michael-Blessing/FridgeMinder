@@ -21,7 +21,7 @@ export default function Signup() {
         user = res.user;
       },
     );
-    create_user(user);
+    await create_user(user);
 
     await signIn("credentials", {
       email,
@@ -30,11 +30,34 @@ export default function Signup() {
       callbackUrl: "/",
     });
   }
+  async function getRandomUserImage() {
+    try {
+      const response = await fetch("https://api.dicebear.com/7.x/thumbs/svg");
+      if (!response.ok) {
+        throw new Error(
+          `Failed to fetch random user image. Status: ${response.status}`,
+        );
+      }
 
-  function create_user(user: any) {
+      console.log(response);
+      const ImageUrl = response.url;
+
+      return ImageUrl;
+    } catch (error) {
+      console.error("Error fetching random user image:", error.message);
+    }
+  }
+
+  async function create_user(user: any) {
+    if (!user) return;
+
+    // fetch userImage from API
+
+    const imageUrl = await getRandomUserImage();
+
     const base_user: any = {
       name: user?.email,
-      image: user?.photoURL || "",
+      image: user?.photoURL ? user.photoURL : imageUrl ? imageUrl : "",
       email: user?.email || "",
       cart: [],
       emailVertified: user?.emailVerified || null,

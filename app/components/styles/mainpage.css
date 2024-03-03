@@ -7,7 +7,7 @@
   justify-content: center;
   height: 95.5vh;
   /* padding-bottom: 20rem; */
-  background-image: url("../../styles/backgrounds/fridgeminder.png");
+  background-image: url("./images/fridgeminder.png");
 }
 
 .text {
