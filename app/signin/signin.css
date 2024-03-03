@@ -3,7 +3,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 95.5vh;
+    min-height: 95.5vh;
+
     /* padding-bottom: 20rem; */
     background-image: url("../components/styles/images/fridgeminder.png");
 }
