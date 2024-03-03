@@ -1,0 +1,51 @@
+/* this css will be absolutely fucking useless*/
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 95.5vh;
+    /* padding-bottom: 20rem; */
+    background-image: url("../../styles/backgrounds/fridgeminder.png");
+}
+
+.text {
+    display: flex;
+    width: 70vw;
+    height: 40vh;
+    background-color: rgba(209, 215, 240, 0%);
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    color: #fff;
+    animation: flicker 1.5s infinite alternate;
+}
+
+@keyframes flicker {
+
+    0%,
+    18%,
+    22%,
+    25%,
+    53%,
+    57%,
+    100% {
+        text-shadow:
+            0 0 4px #fff,
+            0 0 10px #fff,
+            0 0 17px #fff,
+            0 0 40px rgb(109, 115, 240),
+            0 0 80px rgb(109, 115, 240),
+            0 0 90px rgb(109, 115, 240),
+            0 0 100px rgb(109, 115, 240),
+            0 0 150px rgb(109, 115, 240),
+            0 0 160px rgb(109, 115, 240);
+    }
+
+    20%,
+    24%,
+    55% {
+        text-shadow: none;
+    }
+}
