@@ -1,6 +1,8 @@
 // IngredientsOptions.tsx
 import React, { useState, useEffect } from "react";
 import { IngredientLabelType } from "../../types/IngredientLabelType";
+import { faX, faFileLines, faFilePdf } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface IngredientsOptionsProps {
   ingredients: IngredientLabelType[];
@@ -15,15 +17,19 @@ const IngredientsOptions: React.FC<IngredientsOptionsProps> = ({
     IngredientLabelType[]
   >([]);
 
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
   useEffect(() => {
-    // Initially select all ingredients without triggering the onChange
     setSelectedIngredients(ingredients);
   }, [ingredients]);
 
   const handleCheckboxChange = (ingredient: IngredientLabelType) => {
     const updatedIngredients = selectedIngredients.map((selectedIngredient) => {
       if (selectedIngredient.ingredient === ingredient.ingredient) {
-        return { ...selectedIngredient, checked: !selectedIngredient.checked };
+        return {
+          ...selectedIngredient,
+          checked: !selectedIngredient.checked,
+        };
       }
       return selectedIngredient;
     });
@@ -32,11 +38,57 @@ const IngredientsOptions: React.FC<IngredientsOptionsProps> = ({
     onChange(updatedIngredients);
   };
 
+  const handleRemoveButtonClick = (ingredient: IngredientLabelType) => {
+    const updatedIngredients = selectedIngredients.filter(
+      (selectedIngredient) =>
+        selectedIngredient.ingredient !== ingredient.ingredient,
+    );
+
+    setSelectedIngredients(updatedIngredients);
+    onChange(updatedIngredients);
+  };
+
+  const handleAddButtonClick = () => {
+    if (searchTerm.trim() === "") return;
+
+    const newIngredient: IngredientLabelType = {
+      ingredient: searchTerm.trim(),
+      checked: true, // You can set a default value for checked
+    };
+
+    // Check for duplicates
+    if (
+      !selectedIngredients.some(
+        (ingredient) =>
+          ingredient.ingredient.toLowerCase ===
+          newIngredient.ingredient.toLocaleLowerCase,
+      )
+    ) {
+      const updatedIngredients = [...selectedIngredients, newIngredient];
+
+      setSelectedIngredients(updatedIngredients);
+      onChange(updatedIngredients);
+    }
+
+    setSearchTerm("");
+  };
+
+  const filteredIngredients = ingredients.filter((ingredient) =>
+    ingredient.ingredient.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
+
   return (
     <div>
       <h2>Ingredient Options</h2>
-      {ingredients.map((ingredient, index) => (
-        <div key={index}>
+      <input
+        type="text"
+        placeholder="Search or add new ingredient..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <button onClick={handleAddButtonClick}>Add</button>
+      {filteredIngredients.map((ingredient, index) => (
+        <div key={index} className="">
           <label>
             <input
               type="checkbox"
@@ -45,6 +97,9 @@ const IngredientsOptions: React.FC<IngredientsOptionsProps> = ({
             />{" "}
             {ingredient.ingredient}
           </label>
+          <button onClick={() => handleRemoveButtonClick(ingredient)}>
+            <FontAwesomeIcon icon={faX} size="1x" />
+          </button>
         </div>
       ))}
     </div>
