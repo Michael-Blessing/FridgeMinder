@@ -61,7 +61,7 @@ const IngredientsOptions: React.FC<IngredientsOptionsProps> = ({
       !selectedIngredients.some(
         (ingredient) =>
           ingredient.ingredient.toLowerCase ===
-          newIngredient.ingredient.toLocaleLowerCase,
+          newIngredient.ingredient.toLowerCase,
       )
     ) {
       const updatedIngredients = [...selectedIngredients, newIngredient];
