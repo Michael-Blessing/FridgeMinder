@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { IngredientLabelType } from "../../types/IngredientLabelType";
 import { faX, faFileLines, faFilePdf } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./styles/recipe-image-ingredient.css";
 
 interface IngredientsOptionsProps {
   ingredients: IngredientLabelType[];
@@ -78,7 +79,7 @@ const IngredientsOptions: React.FC<IngredientsOptionsProps> = ({
   );
 
   return (
-    <div>
+    <div className="ing-container">
       <h2>Ingredient Options</h2>
       <input
         type="text"
@@ -87,21 +88,23 @@ const IngredientsOptions: React.FC<IngredientsOptionsProps> = ({
         onChange={(e) => setSearchTerm(e.target.value)}
       />
       <button onClick={handleAddButtonClick}>Add</button>
-      {filteredIngredients.map((ingredient, index) => (
-        <div key={index} className="">
-          <label>
-            <input
-              type="checkbox"
-              checked={ingredient.checked}
-              onChange={() => handleCheckboxChange(ingredient)}
-            />{" "}
-            {ingredient.ingredient}
-          </label>
-          <button onClick={() => handleRemoveButtonClick(ingredient)}>
-            <FontAwesomeIcon icon={faX} size="1x" />
-          </button>
-        </div>
-      ))}
+      <div className="flexxing-wrap">
+        {filteredIngredients.map((ingredient, index) => (
+          <div key={index} className="">
+            <label>
+              <input
+                type="checkbox"
+                checked={ingredient.checked}
+                onChange={() => handleCheckboxChange(ingredient)}
+              />{" "}
+              {ingredient.ingredient}
+            </label>
+            <button onClick={() => handleRemoveButtonClick(ingredient)}>
+              <FontAwesomeIcon icon={faX} size="1x" />
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

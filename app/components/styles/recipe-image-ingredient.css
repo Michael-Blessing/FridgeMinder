@@ -164,3 +164,23 @@
   margin-top: 1rem;
   font-size: 2.5rem;
 }
+
+/* IngredientsOptions.css */
+
+.ing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  min-height: 40vh;
+  margin: 2rem;
+  /* Adjust as needed */
+}
+
+.flexxing-wrap {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-height: 30vh;
+
+}
