@@ -5,7 +5,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 20px;
   background-color: rgba(209, 215, 240, 0.8);
   border: 1px solid rgba(209, 215, 240);
   border-radius: 1.5rem;
@@ -14,7 +13,7 @@
   overflow: auto;
   max-height: 100vh;
   min-width: 40vw;
-  min-height: 400px;
+  min-height: 30vh;
   max-width: 90vw;
   /* Adjust as needed */
 }
@@ -71,6 +70,7 @@
   font-size: 1.5rem;
   border: none;
   border-radius: 5px;
+  margin-bottom: 1.25rem;
   cursor: pointer;
   transition: background-color 0.4s;
 }
@@ -172,7 +172,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  min-height: 40vh;
+  min-height: 55vh;
   margin: 2rem;
   /* Adjust as needed */
 }
@@ -181,6 +181,57 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  max-height: 30vh;
+  max-height: 40vh;
+  column-gap: 2rem;
+  row-gap: 1rem;
+}
 
+.individual {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+}
+
+.individual-label {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.input-field {
+  display: flex;
+  width: 20vw;
+  height: 2rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  border: 1px solid #000000;
+  font-size: 1.5rem;
+}
+
+.checkbox {
+  width: 1.25rem;
+  height: 1rem;
+  border-radius: 0.375rem;
+  border: 1px solid #000000;
+}
+
+.deling-button {
+  background-color: #ff2600;
+  border-radius: 0.375rem;
+  border-color: transparent;
+  border: 0.0625rem solid #000;
+  width: 1.25rem;
+  height: 1.25rem;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+  margin-top: 0.35rem;
+  transition-duration: 400ms;
+}
+
+.deling-button:hover {
+  background-color: #8f0e00;
+  transition-duration: 400ms;
+  color: white;
 }

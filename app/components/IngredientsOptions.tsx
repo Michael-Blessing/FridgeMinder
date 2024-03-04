@@ -80,26 +80,26 @@ const IngredientsOptions: React.FC<IngredientsOptionsProps> = ({
 
   return (
     <div className="ing-container">
-      <h2>Ingredient Options</h2>
-      <input
+      <h1 className="recipe-little">Ingredient Options</h1>
+      <input className="input-field"
         type="text"
         placeholder="Search or add new ingredient..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <button onClick={handleAddButtonClick}>Add</button>
+      <button className="upload-button" onClick={handleAddButtonClick}>Add</button>
       <div className="flexxing-wrap">
         {filteredIngredients.map((ingredient, index) => (
-          <div key={index} className="">
-            <label>
-              <input
+          <div key={index} className="individual">
+            <label className="individual-label">
+              <input className="checkbox"
                 type="checkbox"
                 checked={ingredient.checked}
                 onChange={() => handleCheckboxChange(ingredient)}
               />{" "}
               {ingredient.ingredient}
             </label>
-            <button onClick={() => handleRemoveButtonClick(ingredient)}>
+            <button className="deling-button" onClick={() => handleRemoveButtonClick(ingredient)}>
               <FontAwesomeIcon icon={faX} size="1x" />
             </button>
           </div>
