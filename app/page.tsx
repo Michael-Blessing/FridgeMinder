@@ -8,7 +8,7 @@ export default function Home() {
   const { data: session } = useSession();
 
   return (
-    <div className="main">
+    <div className="super-container">
       {session ? <ImageUploader /> : <h4 className="text">Fridgeminder</h4>}
     </div>
   );
