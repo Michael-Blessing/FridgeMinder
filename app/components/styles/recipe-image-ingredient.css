@@ -1,0 +1,166 @@
+/* Imageuploader.css */
+
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  background-color: rgba(209, 215, 240, 0.8);
+  border: 1px solid rgba(209, 215, 240);
+  border-radius: 1.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  overflow: auto;
+  max-height: 100vh;
+  min-width: 40vw;
+  min-height: 400px;
+  max-width: 90vw;
+  /* Adjust as needed */
+}
+
+.actual-upload-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  max-height: 100vh;
+  min-width: 40vw;
+  min-height: 400px;
+  max-width: 90vw;
+  /* Adjust as needed */
+}
+
+
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.file-label {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: #000;
+}
+
+.file-input {
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 0.375rem;
+  font-size: 1.25rem;
+  width: 80%;
+  margin-bottom: 20px;
+  transition-duration: 400ms;
+}
+
+.file-input:hover {
+  border-radius: 0.375rem;
+  background-color: #d1d7f0;
+  transition-duration: 400ms;
+}
+
+.upload-button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.4s;
+}
+
+.upload-button:hover {
+  background-color: #3b883f;
+  transition-duration: 400ms;
+}
+
+.image-container {
+  margin-top: 20px;
+  flex-grow: 1;
+}
+
+.uploaded-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.fetch-button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.fetch-button:hover {
+  background-color: #2980b9;
+}
+
+/* RecipeList.css */
+
+.recipes-container {
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+  min-width: 40vw;
+  min-height: 55vh;
+  max-height: 100vh;
+  max-width: 80vw;
+  box-shadow:
+    0 0 4px rgba(0, 0, 0, 0.1),
+    0 0 10px rgba(0, 0, 0, 0.1),
+    0 0 17px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.recipe-container {
+  position: relative;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.25rem;
+  font-style: oblique;
+  transition-duration: 400ms;
+  color: rgb(15, 122, 229);
+  text-decoration-color: rgb(15, 122, 229);
+  text-decoration: underline;
+}
+
+.recipe-container:hover {
+  background-color: #d1d7f0;
+  border-radius: 0.375rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  transition-duration: 400ms;
+  color: rgb(117, 37, 223)
+}
+
+.recipe-container:visited {
+  color: rgb(167, 0, 176);
+  transition-duration: 400ms;
+}
+
+.bolded {
+  font-weight: bold;
+}
+
+.recipe-title {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  font-size: 2.5rem;
+}

@@ -5,7 +5,7 @@ import RecipeList from "./RecipeList";
 import { Recipe } from "../../types/RecipeType";
 import IngredientsOptions from "./IngredientsOptions";
 import { IngredientLabelType } from "../../types/IngredientLabelType";
-import "./styles/imageuploader.css";
+import "./styles/recipe-image-ingredient.css";
 
 const ImageUploader = () => {
   const [file, setFile] = useState<null | File>(null);
@@ -109,41 +109,44 @@ const ImageUploader = () => {
 
   return (
     <div className="upload-container">
-      <h1>Upload Image</h1>
-      <form
-        className="upload-form"
-        method="POST"
-        encType="multipart/form-data"
-        onSubmit={fetchLabelsAndRecipes}
-      >
-        <label htmlFor="avatar" className="file-label">
-          Choose a file
-        </label>
-        <input
-          type="file"
-          id="avatar"
-          name="avatar"
-          accept="image/*"
-          onChange={onFileChange}
-          onClick={onClick}
-          className="file-input"
-        />
-        <button type="submit" className="upload-button">
-          Upload
-        </button>
-      </form>
-
-      {base64 && (
-        <div className="image-container">
-          <Image
-            src={base64}
-            width={300}
-            height={200}
-            alt="Uploaded Image"
-            className="uploaded-image"
+      <h1 className="recipe-title">Upload Image</h1>
+      <div className="actual-upload-container">
+        <form
+          className="upload-form"
+          method="POST"
+          encType="multipart/form-data"
+          onSubmit={fetchLabelsAndRecipes}
+        >
+          <label htmlFor="avatar" className="file-label">
+            Choose a file
+          </label>
+          <input
+            type="file"
+            id="avatar"
+            name="avatar"
+            accept="image/*"
+            onChange={onFileChange}
+            onClick={onClick}
+            className="file-input"
           />
-        </div>
-      )}
+          <button type="submit" className="upload-button">
+            Upload
+          </button>
+        </form>
+
+        {base64 && (
+          <div className="image-container">
+            <Image
+              src={base64}
+              width={300}
+              height={200}
+              alt="Uploaded Image"
+              className="uploaded-image"
+            />
+          </div>
+        )}
+      </div>
+      <h1 className="recipe-title">Recipes</h1>
 
       <Suspense fallback={<div>Loading Recipes...</div>}>
         {recipesData && <RecipeList recipesData={recipesData} />}
