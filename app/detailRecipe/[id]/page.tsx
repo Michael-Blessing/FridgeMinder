@@ -90,104 +90,106 @@ export default function DetailRecipe() {
   };
 
   return (
-    <div className="recipe-card">
-      <div className="adv-recipe">
-        <Image
-          src={image}
-          alt={title}
-          width={600}
-          height={400}
-          className="rounded-md width-sitelong"
-        />
-        <h2 className="text-2xl font-bold">{title}</h2>
+    <div className="super-container">
+      <div className="recipe-card">
+        <div className="adv-recipe">
+          <Image
+            src={image}
+            alt={title}
+            width={600}
+            height={400}
+            className="WIDE-IMAGE"
+          />
+          <h2 className="text-2xl font-bold">{title}</h2>
+        </div>
+        <h3 className="text-xl">Used Ingredients:</h3>
+        <button
+          onClick={() => addEverythingToCart("used")}
+          className="btn-primary"
+        >
+          Add all used to cart
+          <FontAwesomeIcon
+            icon={faListCheck}
+            size="2x"
+            className="fa-list-check"
+          />
+        </button>
+        <ul className="ingredient-list">
+          {parsedUsedIngredients &&
+            parsedUsedIngredients.map((usedIngredient) => (
+              <li
+                key={usedIngredient.id}
+                className="ingredient-item"
+                onMouseEnter={() => setHoveredId(usedIngredient.id)}
+                onMouseLeave={() => setHoveredId(null)}
+                onClick={() => addToCart(usedIngredient)}
+              >
+                <h4 className="ingredient-text">{`${usedIngredient.name} - ${usedIngredient.amount} ${usedIngredient.unit}`}</h4>
+                <div className="image-container">
+                  <Image
+                    src={usedIngredient.image}
+                    alt={usedIngredient.name}
+                    width={150}
+                    height={150}
+                    className="rounded-md"
+                  />
+                  {hoveredId === usedIngredient.id && (
+                    <FontAwesomeIcon
+                      icon={faPlus}
+                      size="2x"
+                      className="plus-icon"
+                    />
+                  )}
+                </div>
+              </li>
+            ))}
+        </ul>
+        <h3 className="text-xl">Missing Ingredients:</h3>
+        <button
+          onClick={() => addEverythingToCart("missed")}
+          className="btn-primary mt-4 p-2 text-center"
+        >
+          Add all missing to cart
+          <FontAwesomeIcon
+            icon={faListCheck}
+            size="2x"
+            className="fa-list-check"
+          />
+        </button>
+        <ul className="ingredient-list">
+          {parsedMissedIngredients &&
+            parsedMissedIngredients.map((missedIngredient) => (
+              <li
+                key={missedIngredient.id}
+                className=""
+                onMouseEnter={() => setHoveredId(missedIngredient.id)}
+                onMouseLeave={() => setHoveredId(null)}
+                onClick={() => addToCart(missedIngredient)}
+              >
+                <h4>{`${missedIngredient.name} - ${missedIngredient.amount} ${missedIngredient.unit}`}</h4>
+                <div className="image-container ingredient-item">
+                  <Image
+                    src={missedIngredient.image}
+                    alt={missedIngredient.name}
+                    width={150}
+                    height={150}
+                    className="rounded-md"
+                  />
+                  {hoveredId === missedIngredient.id && (
+                    <FontAwesomeIcon
+                      icon={faPlus}
+                      size="2x"
+                      className="plus-icon"
+                    />
+                  )}
+                </div>
+              </li>
+            ))}
+        </ul>
+        <Link href="/" className="btn-primary mt-4 p-2 text-center">
+          Get back
+        </Link>
       </div>
-      <h3 className="text-xl">Used Ingredients:</h3>
-      <button
-        onClick={() => addEverythingToCart("used")}
-        className="btn-primary"
-      >
-        Add all used to cart
-        <FontAwesomeIcon
-          icon={faListCheck}
-          size="2x"
-          className="fa-list-check"
-        />
-      </button>
-      <ul className="ingredient-list">
-        {parsedUsedIngredients &&
-          parsedUsedIngredients.map((usedIngredient) => (
-            <li
-              key={usedIngredient.id}
-              className="ingredient-item"
-              onMouseEnter={() => setHoveredId(usedIngredient.id)}
-              onMouseLeave={() => setHoveredId(null)}
-              onClick={() => addToCart(usedIngredient)}
-            >
-              <h4 className="ingredient-text">{`${usedIngredient.name} - ${usedIngredient.amount} ${usedIngredient.unit}`}</h4>
-              <div className="image-container">
-                <Image
-                  src={usedIngredient.image}
-                  alt={usedIngredient.name}
-                  width={200}
-                  height={200}
-                  className="rounded-md"
-                />
-                {hoveredId === usedIngredient.id && (
-                  <FontAwesomeIcon
-                    icon={faPlus}
-                    size="2x"
-                    className="plus-icon"
-                  />
-                )}
-              </div>
-            </li>
-          ))}
-      </ul>
-      <h3 className="text-xl">Missing Ingredients:</h3>
-      <button
-        onClick={() => addEverythingToCart("missed")}
-        className="btn-primary mt-4 p-2 text-center"
-      >
-        Add all missing to cart
-        <FontAwesomeIcon
-          icon={faListCheck}
-          size="2x"
-          className="fa-list-check"
-        />
-      </button>
-      <ul className="ingredient-list">
-        {parsedMissedIngredients &&
-          parsedMissedIngredients.map((missedIngredient) => (
-            <li
-              key={missedIngredient.id}
-              className=""
-              onMouseEnter={() => setHoveredId(missedIngredient.id)}
-              onMouseLeave={() => setHoveredId(null)}
-              onClick={() => addToCart(missedIngredient)}
-            >
-              <h4>{`${missedIngredient.name} - ${missedIngredient.amount} ${missedIngredient.unit}`}</h4>
-              <div className="image-container ingredient-item">
-                <Image
-                  src={missedIngredient.image}
-                  alt={missedIngredient.name}
-                  width={200}
-                  height={200}
-                  className="rounded-md"
-                />
-                {hoveredId === missedIngredient.id && (
-                  <FontAwesomeIcon
-                    icon={faPlus}
-                    size="2x"
-                    className="plus-icon"
-                  />
-                )}
-              </div>
-            </li>
-          ))}
-      </ul>
-      <Link href="/" className="btn-primary mt-4 p-2 text-center">
-        Get back
-      </Link>
     </div>
   );
 }

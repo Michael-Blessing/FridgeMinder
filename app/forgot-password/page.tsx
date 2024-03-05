@@ -22,7 +22,7 @@ function ForgotPassword() {
   };
 
   return (
-    <div className="wrapper">
+    <div className="super-container">
       {emailMessage ? (
         <h3 className="title">The Email has been sent; Check your Inbox!</h3>
       ) : (
