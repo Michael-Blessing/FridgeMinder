@@ -73,7 +73,7 @@ const IngredientsOptions: React.FC<IngredientsOptionsProps> = ({
   };
 
   const filteredIngredients = ingredients.filter((ingredient) =>
-    ingredient.ingredient.toLowerCase().includes(searchTerm.toLowerCase()),
+    ingredient.ingredient.includes(searchTerm),
   );
 
   return (
