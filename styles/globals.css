@@ -5,3 +5,18 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
+:root {
+  --main: 104, 133, 158;
+  --main-hovers: 88, 121, 148;
+  --link: 39, 82, 109;
+  --link-hovers: 123, 69, 85;
+  --button: 11, 79, 108;
+  --button-hovers: 72, 108, 137;
+  --delete: 196, 54, 51;
+  --delete-hovers: 139, 56, 67;
+}
+
+a:link {
+  text-decoration: none !important;
+}

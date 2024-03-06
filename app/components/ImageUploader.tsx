@@ -111,6 +111,8 @@ const ImageUploader = () => {
     <div className="upload-container">
       <h1 className="recipe-title">Upload Image</h1>
       <div className="actual-upload-container">
+        {/* INSERT ANOTHER OOGA BOOGA MONKEY MOMENT */}
+        {/* Monkey is blind and sleep deprived, no ooga booga. */}
         <form
           className="upload-form"
           method="POST"

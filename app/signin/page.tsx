@@ -80,7 +80,7 @@ export default function Signin() {
                 disabled={!email || !password}
                 className="buetton"
               >
-                Sign in
+                Login
               </button>
             </div>
           </div>

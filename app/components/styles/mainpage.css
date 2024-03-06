@@ -25,7 +25,7 @@
   display: flex;
   width: 70vw;
   height: 40vh;
-  background-color: rgba(209, 215, 240, 0%);
+  background-color: transparent;
   align-items: center;
   justify-content: center;
   font-size: 5rem;
@@ -34,6 +34,7 @@
 }
 
 @keyframes flicker {
+
   0%,
   18%,
   22%,
@@ -45,12 +46,12 @@
       0 0 4px #fff,
       0 0 10px #fff,
       0 0 17px #fff,
-      0 0 40px rgb(109, 115, 240),
-      0 0 80px rgb(109, 115, 240),
-      0 0 90px rgb(109, 115, 240),
-      0 0 100px rgb(109, 115, 240),
-      0 0 150px rgb(109, 115, 240),
-      0 0 160px rgb(109, 115, 240);
+      0 0 40px rgb(1, 186, 239),
+      0 0 80px rgb(1, 186, 239),
+      0 0 90px rgb(1, 186, 239),
+      0 0 100px rgb(1, 186, 239),
+      0 0 150px rgb(1, 186, 239),
+      0 0 160px rgb(1, 186, 239);
   }
 
   20%,

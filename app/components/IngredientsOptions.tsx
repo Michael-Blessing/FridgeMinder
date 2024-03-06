@@ -78,7 +78,7 @@ const IngredientsOptions: React.FC<IngredientsOptionsProps> = ({
 
   return (
     <div className="ing-container">
-      <h1 className="recipe-little">Ingredient Options</h1>
+      <h1 className="ing-title">Ingredient Options</h1>
       <input
         className="input-field"
         type="text"
