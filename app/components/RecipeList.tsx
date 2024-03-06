@@ -20,7 +20,6 @@ const RecipeList = ({ recipesData }) => {
             },
           }}
         >
-
           {/* Insert Absolute fucking Monkey Idea here
             Monkey Idea didn't work, Monkey sad. */}
           <div key={recipe.id} className="recipe-container ">
@@ -31,13 +30,11 @@ const RecipeList = ({ recipesData }) => {
               width={400}
               height={300}
               className=""
-
             />
             <p className="bolded">
               Used Ingredients: {recipe.usedIngredientCount}, Missed
               Ingredients: {recipe.missedIngredientCount}
             </p>
-
           </div>
         </Link>
       ))}

@@ -3,6 +3,7 @@ export interface Cart {
   name: string;
   image: string;
   amount: number;
+  unit?: string;
 }
 
 export type { Cart as CartType };

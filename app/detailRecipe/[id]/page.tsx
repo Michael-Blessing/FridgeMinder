@@ -59,7 +59,7 @@ export default function DetailRecipe() {
     const user = session?.user as UserType;
     const userCollection = collection(db, "users");
     const userDoc = doc(userCollection, user.id);
-    const { name, id, image, amount } = ingredient as Cart;
+    const { name, id, image, amount, unit } = ingredient as Cart;
 
     if (user.cart.length > 0) {
       const ingredientInCart = user.cart.find((item) => item.id === id);
@@ -77,15 +77,15 @@ export default function DetailRecipe() {
         return;
       } else {
         updateDoc(userDoc, {
-          cart: [...user.cart, { name, id, image, amount }],
+          cart: [...user.cart, { name, id, image, amount, unit }],
         });
-        update({ cart: [...user.cart, { name, id, image, amount }] });
+        update({ cart: [...user.cart, { name, id, image, amount, unit }] });
       }
     } else {
       updateDoc(userDoc, {
-        cart: [{ name, id, image, amount }],
+        cart: [{ name, id, image, amount, unit }],
       });
-      update({ cart: [{ name, id, image, amount }] });
+      update({ cart: [{ name, id, image, amount, unit }] });
     }
   };
 

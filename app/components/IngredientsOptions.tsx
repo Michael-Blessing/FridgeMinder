@@ -60,46 +60,51 @@ const IngredientsOptions: React.FC<IngredientsOptionsProps> = ({
     // Check for duplicates
     if (
       !selectedIngredients.some(
-        (ingredient) =>
-          ingredient.ingredient.toLowerCase ===
-          newIngredient.ingredient.toLowerCase,
+        (ingredient) => ingredient.ingredient === newIngredient.ingredient,
       )
     ) {
       const updatedIngredients = [...selectedIngredients, newIngredient];
-
       setSelectedIngredients(updatedIngredients);
       onChange(updatedIngredients);
+    } else {
+      alert("Ingredient already exists");
     }
-
     setSearchTerm("");
   };
 
   const filteredIngredients = ingredients.filter((ingredient) =>
-    ingredient.ingredient.toLowerCase().includes(searchTerm.toLowerCase()),
+    ingredient.ingredient.includes(searchTerm),
   );
 
   return (
     <div className="ing-container">
       <h1 className="recipe-little">Ingredient Options</h1>
-      <input className="input-field"
+      <input
+        className="input-field"
         type="text"
         placeholder="Search or add new ingredient..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <button className="upload-button" onClick={handleAddButtonClick}>Add</button>
+      <button className="upload-button" onClick={handleAddButtonClick}>
+        Add
+      </button>
       <div className="flexxing-wrap">
         {filteredIngredients.map((ingredient, index) => (
           <div key={index} className="individual">
             <label className="individual-label">
-              <input className="checkbox"
+              <input
+                className="checkbox"
                 type="checkbox"
                 checked={ingredient.checked}
                 onChange={() => handleCheckboxChange(ingredient)}
               />{" "}
               {ingredient.ingredient}
             </label>
-            <button className="deling-button" onClick={() => handleRemoveButtonClick(ingredient)}>
+            <button
+              className="deling-button"
+              onClick={() => handleRemoveButtonClick(ingredient)}
+            >
               <FontAwesomeIcon icon={faX} size="1x" />
             </button>
           </div>

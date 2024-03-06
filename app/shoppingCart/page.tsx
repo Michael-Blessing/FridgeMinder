@@ -22,7 +22,7 @@ const ShoppingCart = () => {
 
   const exportToTxt = () => {
     const cartText = cartItems
-      .map((item) => `${item.name} - Quantity: ${item.amount}`)
+      .map((item) => `${item.name} - Quantity: ${item.amount} ${item.unit}`)
       .join("\n");
     const blob = new Blob([cartText], { type: "text/plain" });
     const link = document.createElement("a");
@@ -57,7 +57,7 @@ const ShoppingCart = () => {
       pdf.text(item.name, centerX, currentY); // Centered X position
       pdf.setFontSize(12);
       pdf.setFont("helvetica", "normal");
-      pdf.text(`Quantity: ${item.amount}`, centerX, currentY + 10); // Centered X position
+      pdf.text(`Quantity: ${item.amount} ${item.unit}`, centerX, currentY + 10); // Centered X position
       pdf.addImage(item.image, "JPEG", 10, currentY + 15, 40, 40); // Adjusted Y position
 
       // Update the Y position for the next item
@@ -109,6 +109,7 @@ const ShoppingCart = () => {
                 }
                 className=""
               />
+              {item.unit}
             </p>
             <Image
               src={item.image}
