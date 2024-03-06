@@ -2,13 +2,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #d1d7f0;
+  background-color: rgba(var(--main));
   height: 70px;
+  padding-left: 1.5rem;
 }
 
 .logo a {
   text-decoration: none;
-  color: #333;
+  color: white;
   font-size: 25px;
   font-weight: bold;
   margin-left: auto;
@@ -26,6 +27,14 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  color: rgba(var(--link));
+  transition-duration: 400ms;
+}
+
+.shoppingcart-and-number:hover {
+  color: yellow;
+  transition-duration: 400ms;
 }
 
 .profile-and-signout {
@@ -39,9 +48,9 @@
   width: 50px;
   height: 50px;
   align-self: center;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  margin-right: 10px;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin-right: 1rem;
 }
 
 .shopping-cart {
@@ -58,31 +67,49 @@
   align-self: center;
   top: -90px;
   right: 8px;
-  margin-top: 60px;
+  margin-top: 3.9rem;
 }
 
-.sign-out,
+.sign-out {
+  filter: invert(27%) sepia(63%) saturate(437%) hue-rotate(160deg)
+    brightness(92%) contrast(93%);
+  margin-right: 1rem;
+  transition-duration: 400ms;
+}
+
+.sign-out:hover {
+  filter: invert(29%) sepia(13%) saturate(2126%) hue-rotate(291deg)
+    brightness(89%) contrast(76%);
+  transition-duration: 400ms;
+}
+
 .sign-in-msg {
-  color: black;
-  text-decoration: none;
+  font-size: 25px;
+  color: rgba(var(--link));
   align-self: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   display: flex;
-  margin-right: 10px;
+  margin-right: 1rem;
   font-weight: bold;
+  text-shadow:
+    0 0 1px #ffffff,
+    0 0 4px #ffffff,
+    0 0 5px #ffffff,
+    0 0 7px #ffffff;
+  transition-duration: 400ms;
 }
 
 .welcome-msg {
   text-decoration: none;
-  color: #333;
-  font-size: 24px;
+  color: white;
+  font-size: 25px;
   font-weight: bold;
   padding-left: space-between;
 }
 
 .sign-in-msg:hover {
-  color: #8b0069;
-  text-decoration: underline;
+  color: rgb(var(--link-hovers));
+  text-decoration: underline !important;
   transition-duration: 400ms;
 }
