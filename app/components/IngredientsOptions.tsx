@@ -60,17 +60,15 @@ const IngredientsOptions: React.FC<IngredientsOptionsProps> = ({
     // Check for duplicates
     if (
       !selectedIngredients.some(
-        (ingredient) =>
-          ingredient.ingredient.toLowerCase ===
-          newIngredient.ingredient.toLowerCase,
+        (ingredient) => ingredient.ingredient === newIngredient.ingredient,
       )
     ) {
       const updatedIngredients = [...selectedIngredients, newIngredient];
-
       setSelectedIngredients(updatedIngredients);
       onChange(updatedIngredients);
+    } else {
+      alert("Ingredient already exists");
     }
-
     setSearchTerm("");
   };
 
