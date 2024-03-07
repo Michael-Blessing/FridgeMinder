@@ -93,45 +93,49 @@ const ShoppingCart = () => {
   }
 
   return (
-    <div className="container">
-      <h1 className="title">Shopping Cart</h1>
-      {cartItems?.map((item) => (
-        <div key={item.id} className="item-wrapper">
-          <div className="item">
-            <p className="item-name">{item.name}</p>
-            <p className="item-quantity">
-              Quantity:{" "}
-              <input
-                type="number"
-                value={item.amount}
-                onChange={(event) =>
-                  handleAmountChange(item.id, item.name, event)
-                }
-                className=""
+    <div className="super-container">
+      <div className="container">
+        <h1 className="title">Shopping Cart</h1>
+        {cartItems?.map((item) => (
+          <div key={item.id} className="item-wrapper">
+            <div className="item">
+              <p className="item-name">{item.name}</p>
+              <p className="item-quantity">
+                Quantity:{" "}
+                <input
+                  type="number"
+                  value={item.amount}
+                  onChange={(event) =>
+                    handleAmountChange(item.id, item.name, event)
+                  }
+                  className=""
+                />
+                {item.unit}
+              </p>
+              <Image
+                src={item.image}
+                alt={item.name}
+                width={100}
+                height={100}
+                className="item-image"
               />
-              {item.unit}
-            </p>
-            <Image
-              src={item.image}
-              alt={item.name}
-              width={100}
-              height={100}
-              className="item-image"
-            />
+            </div>
+            <button onClick={() => removeFromCart(item.id)} className="delete">
+              <FontAwesomeIcon icon={faX} size="2x" />
+            </button>
           </div>
-          <button onClick={() => removeFromCart(item.id)} className="delete">
-            <FontAwesomeIcon icon={faX} size="2x" />
+        ))}
+        <div className="button-container">
+          <button onClick={exportToTxt} className="export-txt">
+            Export as TXT
+            <FontAwesomeIcon icon={faFileLines} size="2x" />
+          </button>
+          <button onClick={exportToPdf} className="export-pdf">
+            Export as PDF
+            <FontAwesomeIcon icon={faFilePdf} size="2x" />
           </button>
         </div>
-      ))}
-      <button onClick={exportToTxt} className="export-txt">
-        Export as TXT
-        <FontAwesomeIcon icon={faFileLines} size="2x" />
-      </button>
-      <button onClick={exportToPdf} className="export-pdf">
-        Export as PDF
-        <FontAwesomeIcon icon={faFilePdf} size="2x" />
-      </button>
+      </div>
     </div>
   );
 };
