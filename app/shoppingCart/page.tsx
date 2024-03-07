@@ -108,7 +108,7 @@ const ShoppingCart = () => {
                   onChange={(event) =>
                     handleAmountChange(item.id, item.name, event)
                   }
-                  className=""
+                  className="input"
                 />
                 {item.unit}
               </p>

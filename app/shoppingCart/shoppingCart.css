@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   height: calc(100vh - 70px);
   /* padding-bottom: 20rem; */
   background-image: url("../components/styles/images/fridgeminder.png");
@@ -13,14 +13,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-width: 30vw;
+  min-width: 40vw;
   max-width: 90vw;
-  height: 90vh;
+  min-height: 20vh;
+  max-height: 90vh;
   overflow: auto;
   margin-bottom: 1rem;
   margin-top: 1rem;
   background-color: rgba(var(--main), 0.9);
   border-radius: 1.5rem;
+  padding: 0.5rem;
 }
 
 .container::-webkit-scrollbar {
@@ -37,10 +39,13 @@
 }
 
 .item {
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 30vw;
+  margin-bottom: 1.75rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -49,17 +54,33 @@
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #555;
+  color: #000;
+  text-wrap: wrap;
 }
 
 .item-quantity {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  color: #777;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #000;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .item-wrapper {
   position: relative;
+  min-width: 45vw;
+  max-width: 45vw;
+}
+
+.input {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #000;
+  margin: 1rem;
+
 }
 
 .delete {
@@ -70,7 +91,7 @@
   /* Adjust the right value as needed */
   background-color: transparent;
   border: none;
-  color: #e74c3c;
+  color: rgb(var(--delete));
   cursor: pointer;
   transition:
     color 0.3s ease,
@@ -78,7 +99,7 @@
 }
 
 .delete:hover {
-  color: #c0392b;
+  color: rgb(var(--delete-hovers));
   transform: scale(1.1);
   /* Add a slight scale effect on hover */
 }
