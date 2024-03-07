@@ -59,7 +59,7 @@ export default function DetailRecipe() {
     const user = session?.user as UserType;
     const userCollection = collection(db, "users");
     const userDoc = doc(userCollection, user.id);
-    const { name, id, image, amount, unit } = ingredient as Cart;
+    const { name, id, image, amount } = ingredient as Cart;
 
     if (user.cart.length > 0) {
       const ingredientInCart = user.cart.find((item) => item.id === id);
@@ -77,15 +77,15 @@ export default function DetailRecipe() {
         return;
       } else {
         updateDoc(userDoc, {
-          cart: [...user.cart, { name, id, image, amount, unit }],
+          cart: [...user.cart, { name, id, image, amount }],
         });
-        update({ cart: [...user.cart, { name, id, image, amount, unit }] });
+        update({ cart: [...user.cart, { name, id, image, amount }] });
       }
     } else {
       updateDoc(userDoc, {
-        cart: [{ name, id, image, amount, unit }],
+        cart: [{ name, id, image, amount }],
       });
-      update({ cart: [{ name, id, image, amount, unit }] });
+      update({ cart: [{ name, id, image, amount }] });
     }
   };
 
@@ -100,9 +100,9 @@ export default function DetailRecipe() {
             height={400}
             className="WIDE-IMAGE"
           />
-          <h2 className="text-2xl font-bold">{title}</h2>
+          <h2 className="">{title}</h2>
         </div>
-        <h3 className="text-xl">Used Ingredients:</h3>
+        <h3 className="">Used Ingredients:</h3>
         <button
           onClick={() => addEverythingToCart("used")}
           className="btn-primary"
@@ -124,7 +124,7 @@ export default function DetailRecipe() {
                 onMouseLeave={() => setHoveredId(null)}
                 onClick={() => addToCart(usedIngredient)}
               >
-                <h4 className="ingredient-text">{`${usedIngredient.name} - ${usedIngredient.amount} ${usedIngredient.unit}`}</h4>
+                <h4 className="ing-name">{`${usedIngredient.name} - ${usedIngredient.amount} ${usedIngredient.unit}`}</h4>
                 <div className="image-container">
                   <Image
                     src={usedIngredient.image}
@@ -144,10 +144,10 @@ export default function DetailRecipe() {
               </li>
             ))}
         </ul>
-        <h3 className="text-xl">Missing Ingredients:</h3>
+        <h3 className="">Missing Ingredients:</h3>
         <button
           onClick={() => addEverythingToCart("missed")}
-          className="btn-primary mt-4 p-2 text-center"
+          className="btn-primary"
         >
           Add all missing to cart
           <FontAwesomeIcon
@@ -161,13 +161,13 @@ export default function DetailRecipe() {
             parsedMissedIngredients.map((missedIngredient) => (
               <li
                 key={missedIngredient.id}
-                className=""
+                className="ingredient-item"
                 onMouseEnter={() => setHoveredId(missedIngredient.id)}
                 onMouseLeave={() => setHoveredId(null)}
                 onClick={() => addToCart(missedIngredient)}
               >
-                <h4>{`${missedIngredient.name} - ${missedIngredient.amount} ${missedIngredient.unit}`}</h4>
-                <div className="image-container ingredient-item">
+                <h4 className="ing-name">{`${missedIngredient.name} - ${missedIngredient.amount} ${missedIngredient.unit}`}</h4>
+                <div className="image-container">
                   <Image
                     src={missedIngredient.image}
                     alt={missedIngredient.name}
@@ -186,7 +186,7 @@ export default function DetailRecipe() {
               </li>
             ))}
         </ul>
-        <Link href="/" className="btn-primary mt-4 p-2 text-center">
+        <Link href="/" className="btn-primary">
           Get back
         </Link>
       </div>

@@ -92,6 +92,7 @@ const IngredientsOptions: React.FC<IngredientsOptionsProps> = ({
       <div className="flexxing-wrap">
         {filteredIngredients.map((ingredient, index) => (
           <div key={index} className="individual">
+            {/* <div className="individual2"> */}
             <label className="individual-label">
               <input
                 className="checkbox"
@@ -101,6 +102,7 @@ const IngredientsOptions: React.FC<IngredientsOptionsProps> = ({
               />{" "}
               {ingredient.ingredient}
             </label>
+            {/* </div> */}
             <button
               className="deling-button"
               onClick={() => handleRemoveButtonClick(ingredient)}
