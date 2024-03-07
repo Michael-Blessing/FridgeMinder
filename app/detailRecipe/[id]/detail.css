@@ -113,7 +113,6 @@
 .ingredient-item:hover {
   background-color: rgba(88, 121, 148, 0.9);
   transition-duration: 400ms;
-
 }
 
 .ing-name {
@@ -133,8 +132,6 @@
   border-radius: 0.375rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-
 
 .fa-list-check {
   margin-left: 1rem;

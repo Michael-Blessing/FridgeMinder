@@ -123,7 +123,7 @@
   flex-direction: row;
   overflow: auto;
   min-width: 40vw;
-  min-height: 55vh;
+  min-height: 60vh;
   max-height: 100vh;
   max-width: 80vw;
   box-shadow:
@@ -165,7 +165,7 @@
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   transition-duration: 400ms;
   color: rgb(var(--link-hovers));
-  text-decoration: underline
+  text-decoration: underline;
 }
 
 .bolded {
@@ -175,7 +175,6 @@
     0 0 4px #ffffff,
     0 0 5px #ffffff,
     0 0 7px #ffffff;
-  ;
 }
 
 .recipe-title {
@@ -204,7 +203,6 @@
   max-height: 40vh;
   column-gap: 2rem;
   row-gap: 1rem;
-
 }
 
 .flexxing-wrap::-webkit-scrollbar {

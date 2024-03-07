@@ -39,7 +39,11 @@ export default function Navbar() {
               >
                 <div className="shopping-cart">{user.cart.length}</div>
 
-                <FontAwesomeIcon icon={faCartShopping} size="2x" className="shoppingcart-and-number" />
+                <FontAwesomeIcon
+                  icon={faCartShopping}
+                  size="2x"
+                  className="shoppingcart-and-number"
+                />
               </Link>
             </div>
           ) : (
