@@ -27,6 +27,7 @@ function ForgotPassword() {
         <h3 className="title">The Email has been sent; Check your Inbox!</h3>
       ) : (
         <form onSubmit={handleSubmit} className="form">
+          <h1 className="forgotpassword">Forgot Your Password?</h1>
           <input
             type="email"
             name="email"
@@ -35,7 +36,7 @@ function ForgotPassword() {
             required
             className="input"
           />
-          <div>
+          <div className="button">
             <button className="submit" type="submit">
               Reset Your Password
             </button>
