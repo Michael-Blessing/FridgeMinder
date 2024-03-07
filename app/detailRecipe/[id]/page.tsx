@@ -100,9 +100,9 @@ export default function DetailRecipe() {
             height={400}
             className="WIDE-IMAGE"
           />
-          <h2 className="">{title}</h2>
+          <h2 className="margins">{title}</h2>
         </div>
-        <h3 className="">Used Ingredients:</h3>
+        <h3 className="margins">Used Ingredients:</h3>
         <button
           onClick={() => addEverythingToCart("used")}
           className="btn-primary"
@@ -144,7 +144,7 @@ export default function DetailRecipe() {
               </li>
             ))}
         </ul>
-        <h3 className="">Missing Ingredients:</h3>
+        <h3 className="margins">Missing Ingredients:</h3>
         <button
           onClick={() => addEverythingToCart("missed")}
           className="btn-primary"

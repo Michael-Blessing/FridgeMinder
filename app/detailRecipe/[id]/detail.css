@@ -48,6 +48,13 @@
   transition-duration: 400ms;
   font-size: 14px;
   font-size: 1.1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+  border: none;
 }
 
 .btn-primary:hover {
@@ -113,9 +120,11 @@
   display: flex;
   flex-direction: row;
   text-wrap: wrap;
+  justify-content: center;
   font-size: 1.25rem;
   width: 150px;
   color: #fff;
+  margin-top: 1rem;
 }
 
 .WIDE-IMAGE {
@@ -128,7 +137,7 @@
 
 
 .fa-list-check {
-  padding-left: 10px;
+  margin-left: 1rem;
 }
 
 .rounded-md {
@@ -137,4 +146,8 @@
 
 .plus-icon {
   color: #000;
+}
+
+.margins {
+  margin: 1rem;
 }

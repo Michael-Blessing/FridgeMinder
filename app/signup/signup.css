@@ -11,6 +11,7 @@
 .title {
     font-size: 2.5rem;
     font-weight: bold;
+    color: #fff;
 }
 
 .text-container {
@@ -33,7 +34,7 @@
     margin: 1rem;
     width: 30vw;
     border-radius: 1.5rem;
-    background-color: rgba(var(--main), 0.8);
+    background-color: rgba(var(--main), 0.9);
 }
 
 .fourth-container {
@@ -65,6 +66,7 @@
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
+    color: #fff;
 }
 
 .input-container {
