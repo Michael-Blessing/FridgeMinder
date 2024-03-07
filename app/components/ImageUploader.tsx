@@ -67,6 +67,10 @@ const ImageUploader = () => {
 
   const fetchRecipes = async () => {
     try {
+      // keine gute Lösung aber Gott wollte es so
+      const ingredients = JSON.parse(
+        localStorage.getItem("uploadedIngredients") as string,
+      );
       const responseRecipes = await fetch("/api/fetchRecipes", {
         method: "POST",
         body: JSON.stringify({ ingredients }),
@@ -103,8 +107,12 @@ const ImageUploader = () => {
     e.preventDefault();
     if (!file) return;
 
-    await fetchLabels();
-    await fetchRecipes();
+    try {
+      await fetchLabels();
+      await fetchRecipes();
+    } catch (error) {
+      console.error("Error in fetchLabelsAndRecipes:", error);
+    }
   };
 
   return (
